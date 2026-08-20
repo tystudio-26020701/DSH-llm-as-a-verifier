@@ -26,6 +26,10 @@ function run(command, args, env = process.env) {
   return spawnSync(command, args, { stdio: 'inherit', env, cwd: root })
 }
 
+function runQuiet(command, args, env = process.env) {
+  return spawnSync(command, args, { encoding: 'utf8', env, cwd: root })
+}
+
 function buildWith(cargo, env) {
   return run(cargo, [
     'build',
@@ -43,8 +47,8 @@ if (process.env.VERIFIER_WASM_RUSTFLAGS !== undefined) env.RUSTFLAGS = process.e
 let result = buildWith(cargo, env)
 if (result.status !== 0) {
   const rustup = process.env.VERIFIER_RUSTUP ?? 'rustup'
-  const probe = run(rustup, ['target', 'list', '--installed'], env)
-  if (probe.status === 0 && !probe.stdout?.toString().includes('wasm32-unknown-unknown')) {
+  const probe = runQuiet(rustup, ['target', 'list', '--installed'], env)
+  if (probe.status === 0 && !(probe.stdout ?? '').includes('wasm32-unknown-unknown')) {
     console.error('The wasm32-unknown-unknown target is missing; installing it with rustup...')
     const add = run(rustup, ['target', 'add', 'wasm32-unknown-unknown'], env)
     if (add.status === 0) result = buildWith(cargo, env)
