@@ -17,6 +17,18 @@ possible:
 - [PolyForm Project](https://polyformproject.org/) — the license used for this
   repository.
 
+We additionally thank the LLM-as-a-Verifier team for their open publication
+of the fine-grained reward idea, the pivot tournament, the self-verification
+study, and the public trajectory data. Their work made this harness-native
+implementation possible.
+
+**Quoted material.** A short methodology quote and two upstream-reported
+benchmark tables from the LLM-as-a-Verifier README are reproduced in this
+repository for provenance. They remain under the upstream MIT license; see
+[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) and
+[docs/PROVENANCE.md](./docs/PROVENANCE.md). Quoting their results is not an
+endorsement by them, and we do not present their numbers as ours.
+
 **Originality statement.** This repository contains an independent
 implementation written for this project. No source file was copied from the
 projects above; they were used as published methodology and platform

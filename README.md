@@ -48,6 +48,41 @@ strongest candidates become pivots, the remaining pivot rounds are scored,
 and the results are aggregated under a Bradley-Terry model. Progress tracking
 uses the same machinery with the scale inverted (A = no progress, T = done).
 
+## Methodology & evidence
+
+This preset is an independent implementation of the published
+[LLM-as-a-Verifier](https://github.com/llm-as-a-verifier/llm-as-a-verifier)
+methodology. The upstream project summarizes its key idea as follows
+(quoted from its README):
+
+> The key idea is simple: 1) use fine-grained scoring granularity, 2) take the
+> expectation over the full logprob distribution of LLM score tokens, and 3)
+> scale repeated evaluation and criteria decomposition.
+
+The following figures are **upstream-reported results**, reproduced here for
+methodology provenance and community acknowledgement. They were not produced
+by this repository:
+
+| Config | Pass@1 | LLM-as-a-Verifier | Oracle |
+|---|---|---|---|
+| Best-of-3 | 79.4% | **86.5% ± 1.1%** | 92.1% |
+| Best-of-5 | 78.7% | **88.0% ± 0.6%** | 96.6% |
+
+| Benchmark | Base Model | Harness | Pass@1 | LLM-as-a-Verifier | Oracle |
+|---|---|---|---|---|---|
+| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | **86.5%** | 92.1% |
+| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | **78.2%** | 84.4% |
+| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | **73.3%** | 75.0% |
+
+Source: llm-as-a-verifier `README.md`, commit
+`8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770` (2026-08-20), MIT license. Full
+tracking and quotation policy: [docs/PROVENANCE.md](./docs/PROVENANCE.md) and
+[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
+
+Our own benchmark reproductions, when available, are published separately in
+`results/` with a full reproducibility card and are never mixed with the
+tables above.
+
 ## Installation
 
 ### 1. Configure a verifier backend
@@ -152,11 +187,12 @@ reads the renormalized A–T distribution directly.
 
 ```text
 src/                        TypeScript sources
-  lib/                      backend, cache, criteria, core loader, verifier
+  lib/                      backend, cache, criteria, benchmark, verifier
   plugins/verifier-tools.ts the Cordis plugin (tools + session recorder)
 crates/verifier-core/       Rust core (no_std wasm32 + native tests)
 preset/llm-as-a-verifier/   installable preset (bundles + criteria + wasm)
-scripts/                    Node-only build and hygiene scripts
+scripts/                    Node-only build, benchmark, and hygiene scripts
+docs/                       provenance and benchmark guides
 test/                       Node test runner suite
 ```
 
@@ -174,6 +210,21 @@ npm run check       # full pre-commit gate
 
 The prebuilt `preset/llm-as-a-verifier/verifier-core.wasm` is committed so the
 preset is copy-and-go; `npm run build:wasm` regenerates it from source.
+
+## Benchmarking
+
+The repository ships an original TypeScript/Node runner for pre-generated
+Terminal-Bench trajectory data:
+
+```sh
+npm run bench:dry                                        # print the bo3 estimate
+node scripts/benchmark.mjs terminal_bench_2.1 --mode bo3 # full bo3 run
+```
+
+See [docs/BENCHMARK.md](./docs/BENCHMARK.md) for cost estimates, local/rented
+server setup, and the reproducibility-card policy. Raw trajectories stay in
+the git-ignored `references/` folder; only result summaries are committed to
+`results/`.
 
 ## License
 

@@ -47,6 +47,6 @@ await build({
 })
 
 // Keep the copied preset self-contained for license-notice purposes.
-for (const file of ['LICENSE', 'COMMERCIAL-LICENSE.md', 'ACKNOWLEDGEMENTS.md']) {
+for (const file of ['LICENSE', 'COMMERCIAL-LICENSE.md', 'ACKNOWLEDGEMENTS.md', 'THIRD_PARTY_NOTICES.md']) {
   await copyFile(resolve(root, file), resolve(root, 'preset/llm-as-a-verifier', file))
 }

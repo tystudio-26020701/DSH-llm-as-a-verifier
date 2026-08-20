@@ -38,6 +38,36 @@
 Bradley-Terry 模型聚合。进度追踪复用同一机制，但刻度反转（A = 无进展，
 T = 完成）。
 
+## 方法论出处与上游结果
+
+本预设是已发表的 [LLM-as-a-Verifier](https://github.com/llm-as-a-verifier/llm-as-a-verifier)
+方法论的独立实现。上游 README 如此概括其核心思想（原文引用）：
+
+> The key idea is simple: 1) use fine-grained scoring granularity, 2) take the
+> expectation over the full logprob distribution of LLM score tokens, and 3)
+> scale repeated evaluation and criteria decomposition.
+
+以下数字为**上游报告的结果**，仅用于方法论出处与社区致敬，并非本仓库产出：
+
+| Config | Pass@1 | LLM-as-a-Verifier | Oracle |
+|---|---|---|---|
+| Best-of-3 | 79.4% | **86.5% ± 1.1%** | 92.1% |
+| Best-of-5 | 78.7% | **88.0% ± 0.6%** | 96.6% |
+
+| Benchmark | Base Model | Harness | Pass@1 | LLM-as-a-Verifier | Oracle |
+|---|---|---|---|---|---|
+| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | **86.5%** | 92.1% |
+| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | **78.2%** | 84.4% |
+| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | **73.3%** | 75.0% |
+
+来源：llm-as-a-verifier `README.md`，commit
+`8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770`（2026-08-20），MIT 许可。完整引用
+跟踪与引用政策见 [docs/PROVENANCE.md](./docs/PROVENANCE.md) 与
+[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+
+本仓库自己的复现结果将单独发布在 `results/`，并附带完整复现卡片，绝不与
+上表混用。
+
 ## 安装
 
 ### 1. 配置验证后端
@@ -134,11 +164,12 @@ export VERIFIER_MODEL="your-served-model"
 
 ```text
 src/                        TypeScript 源码
-  lib/                      后端、缓存、criteria、核心加载器、验证编排
+  lib/                      后端、缓存、criteria、benchmark、验证编排
   plugins/verifier-tools.ts Cordis 插件（工具 + 会话记录器）
 crates/verifier-core/       Rust 核心（no_std wasm32 + 原生测试）
 preset/llm-as-a-verifier/   可安装预设（bundle + criteria + wasm）
-scripts/                    纯 Node 构建与卫生检查脚本
+scripts/                    纯 Node 构建、benchmark 与卫生检查脚本
+docs/                       出处与 benchmark 指南
 test/                       Node 测试
 ```
 
@@ -156,6 +187,20 @@ npm run check       # 提交前完整检查
 
 仓库提交了预构建的 `preset/llm-as-a-verifier/verifier-core.wasm`，预设开箱
 即用；`npm run build:wasm` 可从源码重新生成。
+
+## Benchmark 复现
+
+仓库内置原创的 TypeScript/Node runner，用于对预生成的 Terminal-Bench 轨迹
+数据做 Best-of-N 复现：
+
+```sh
+npm run bench:dry                                        # 打印 bo3 估算
+node scripts/benchmark.mjs terminal_bench_2.1 --mode bo3 # 完整 bo3 复现
+```
+
+成本估算、本地/租用服务器步骤与复现卡片规范见
+[docs/BENCHMARK.md](./docs/BENCHMARK.md)。原始轨迹数据只放在被 git 忽略的
+`references/` 目录中，仓库只提交 `results/` 的结果摘要。
 
 ## 许可证
 
