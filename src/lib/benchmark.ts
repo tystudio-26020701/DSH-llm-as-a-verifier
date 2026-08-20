@@ -65,6 +65,8 @@ export interface BenchmarkSummary {
 
 export interface BenchmarkRun {
   createdAt: string
+  agentDir: string
+  limit?: number
   preset: BenchmarkPreset
   seed: number
   summary: BenchmarkSummary
@@ -195,6 +197,8 @@ export async function runTerminalBenchmark(
 
   return {
     createdAt: new Date().toISOString(),
+    agentDir: input.agentDir,
+    limit: input.limit,
     preset: input.preset,
     seed: input.seed ?? 0,
     summary,

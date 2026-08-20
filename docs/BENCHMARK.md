@@ -130,3 +130,15 @@ results/cache-<benchmark>-<mode>.json   # reusable score cache
   every table "Independent reproduction with DSH-llm-as-a-verifier".
 - If a number differs from upstream, publish it anyway with the full config;
   a clean negative result is useful.
+
+## Current pilot result
+
+First uncached pilot, `2026-08-20`, three tasks, seed 0:
+
+| Tasks | Pass@1 | Verifier | Oracle | Calls | Input tokens | Output tokens |
+|---|---|---|---|---|---|---|
+| 3 | 100.00% | 100.00% | 100.00% | 72 | 4,118,922 | 376,814 |
+
+Result files:
+[`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](../results/terminal_bench_2.1-bo3-pilot-3tasks.md)
+and the matching JSON. This is a smoke pilot, **not** a full reproduction.

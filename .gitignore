@@ -13,6 +13,9 @@
 .env.*
 !.env.example
 
+# Benchmark score caches are machine state; result summaries are reviewable
+/results/cache-*.json
+
 # Node tooling (build outputs under preset/ are committed intentionally)
 /node_modules/
 /dist/

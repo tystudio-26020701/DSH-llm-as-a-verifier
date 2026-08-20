@@ -1,3 +1,5 @@
+![alt text](asstes/DSH-LLM-as-a-Verifier_02.svg)
+
 # DSH-llm-as-a-verifier
 
 **LLM-as-a-Verifier for DeepSeek Harness** — fine-grained verification,
@@ -81,7 +83,8 @@ tracking and quotation policy: [docs/PROVENANCE.md](./docs/PROVENANCE.md) and
 
 Our own benchmark reproductions, when available, are published separately in
 `results/` with a full reproducibility card and are never mixed with the
-tables above.
+tables above. A three-task BO3 smoke pilot is already recorded in
+[`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md).
 
 ## Installation
 

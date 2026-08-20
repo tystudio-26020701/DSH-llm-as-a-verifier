@@ -1,0 +1,134 @@
+{
+  "createdAt": "2026-08-20T14:01:57.378Z",
+  "agentDir": "/run/media/lcz/b9694bf8-68f6-456d-bb43-03f8d2d9eec2/Creation/llm-as-a-verifier-Plugin/references/llm-as-a-verifier/data/terminal_bench_2.1_trajs/mini-swe-agent_deepseek-v4-flash",
+  "limit": 3,
+  "preset": {
+    "name": "bo3",
+    "trials": 3,
+    "pivots": 1,
+    "evaluations": 2
+  },
+  "seed": 0,
+  "summary": {
+    "preset": {
+      "name": "bo3",
+      "trials": 3,
+      "pivots": 1,
+      "evaluations": 2
+    },
+    "tasks": 3,
+    "passAt1": 1,
+    "verifierAccuracy": 1,
+    "oracleRate": 1,
+    "verifierUplift": 0,
+    "oracleGap": 0,
+    "nComparisons": 15,
+    "verifierCalls": 72,
+    "usage": {
+      "calls": 72,
+      "inputTokens": 4118922,
+      "cachedInputTokens": 3182592,
+      "outputTokens": 376814,
+      "reasoningTokens": 368204
+    }
+  },
+  "tasks": [
+    {
+      "taskName": "adaptive-rejection-sampler",
+      "trials": [
+        {
+          "trialName": "adaptive-rejection-sampler__C33bGjN",
+          "reward": 1
+        },
+        {
+          "trialName": "adaptive-rejection-sampler__Gjk9d2M",
+          "reward": 1
+        },
+        {
+          "trialName": "adaptive-rejection-sampler__gKdYsGj",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49778171841470353,
+        0.4875990734358169,
+        0.5109644061121097
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "bn-fit-modify",
+      "trials": [
+        {
+          "trialName": "bn-fit-modify__4ysPANc",
+          "reward": 1
+        },
+        {
+          "trialName": "bn-fit-modify__DaS54Na",
+          "reward": 1
+        },
+        {
+          "trialName": "bn-fit-modify__Hropd9d",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.501089262465241,
+        0.5007309373069645,
+        0.49781671273938083
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "break-filter-js-from-html",
+      "trials": [
+        {
+          "trialName": "break-filter-js-from-html__AoXCkrq",
+          "reward": 1
+        },
+        {
+          "trialName": "break-filter-js-from-html__GtbRM8Q",
+          "reward": 1
+        },
+        {
+          "trialName": "break-filter-js-from-html__T7nhe7p",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5093153131127612,
+        0.483193927172536,
+        0.5043856553437823
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    }
+  ],
+  "usageSource": "observed during the initial uncached pilot run on 2026-08-20; the JSON was replayed from cache for outcome fields"
+}

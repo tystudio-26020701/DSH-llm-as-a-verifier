@@ -69,7 +69,8 @@ T = 完成）。
 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
 
 本仓库自己的复现结果将单独发布在 `results/`，并附带完整复现卡片，绝不与
-上表混用。
+上表混用。目前已完成一个三任务 BO3 冒烟 pilot，见
+[`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md)。
 
 ## 安装
 
