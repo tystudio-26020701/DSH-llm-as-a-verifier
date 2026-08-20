@@ -1,3 +1,6 @@
+
+![alt text](asstes/DSH-LLM-as-a-Verifier_02.svg)
+
 # DSH-llm-as-a-verifier
 
 **面向 DeepSeek Harness 的 LLM-as-a-Verifier**——把细粒度验证、Best-of-N
