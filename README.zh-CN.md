@@ -60,9 +60,11 @@ rm -rf "$dsh_home/.agent-presets/llm-as-a-verifier"
 cp -R preset/llm-as-a-verifier "$dsh_home/.agent-presets/llm-as-a-verifier"
 ```
 
-重启 DeepSeek Harness，新建会话并选择 **LLM-as-a-Verifier**。预设自带精简
-工作目录（持久化 bash、str_replace_editor、read/write/edit、glob/grep、
-后台任务）和五个验证工具。
+重启 DeepSeek Harness，打开一个**全新的空白会话**并选择
+**LLM-as-a-Verifier**。DeepSeek Harness 只会在会话仍为空白时应用预设切换；
+已有历史记录的会话会继续使用其创建时的预设。该预设自带精简工作目录
+（持久化 bash、str_replace_editor、read/write/edit、glob/grep、后台任务）
+和五个验证工具。
 
 ### 3. 验证安装
 

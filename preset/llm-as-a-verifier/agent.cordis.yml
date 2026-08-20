@@ -99,6 +99,8 @@
 # Standard glob/grep search tools.
 - id: tool-fs-search
   name: '@deepseek-ai/dsh-tool-fs-search'
+  config:
+    sampleOverCapGlobResults: false
 
 # Background job controls (job_list / job_output / job_kill).
 - id: tool-jobs

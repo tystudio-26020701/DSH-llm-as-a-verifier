@@ -70,10 +70,12 @@ rm -rf "$dsh_home/.agent-presets/llm-as-a-verifier"
 cp -R preset/llm-as-a-verifier "$dsh_home/.agent-presets/llm-as-a-verifier"
 ```
 
-Restart DeepSeek Harness, create a new session, and select
-**LLM-as-a-Verifier**. The preset ships a lean working catalog (persistent
-bash, str_replace_editor, read/write/edit, glob/grep, background jobs) plus
-the five verifier tools.
+Restart DeepSeek Harness, open a **new blank session**, and select
+**LLM-as-a-Verifier**. DeepSeek Harness only applies a preset change while a
+session is still blank; an active session with history keeps the preset it
+started with. The preset ships a lean working catalog (persistent bash,
+str_replace_editor, read/write/edit, glob/grep, background jobs) plus the
+five verifier tools.
 
 ### 3. Verify the installation
 
