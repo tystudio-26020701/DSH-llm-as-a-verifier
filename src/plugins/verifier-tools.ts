@@ -21,6 +21,7 @@ import {
 } from '../lib/backend.js'
 import { coreVersion } from '../lib/core.js'
 import type { CriteriaArgument } from '../lib/criteria.js'
+import { OnlineProgressTracker } from '../lib/online-tracker.js'
 import { TranscriptRecorder, type SessionLike, type TranscriptEvent } from '../lib/session-transcript.js'
 import { tokenUsage } from '../lib/usage.js'
 import {
@@ -186,9 +187,11 @@ function describeError(error: unknown): string {
 
 export function apply(ctx: CordisContext, config: BackendSettings = {}): void {
   const recorder = new TranscriptRecorder()
+  const tracker = new OnlineProgressTracker()
 
   ctx.on('session/event', (session, event) => {
     recorder.observe(session, event)
+    tracker.observe(session, event)
   })
 
   ctx.tools.register({
@@ -390,6 +393,84 @@ export function apply(ctx: CordisContext, config: BackendSettings = {}): void {
       }
     },
   })
+
+  ctx.tools.register({
+    name: 'verifier_tracker_start',
+    description: [
+      'Start an ONLINE progress tracker for one task.',
+      '',
+      'After starting, feed the session steps one at a time with verifier_tracker_update; each update scores only the prefix seen so far, so the verifier never sees the future. Use the returned score for early stopping or resampling, and verifier_tracker_result to print the curve.',
+    ].join('\n'),
+    parameters: toParameterSchema({
+      problem: { type: 'string', required: true, description: 'The task this tracker will measure progress against.' },
+      evaluations: { type: 'number', required: false, description: 'Independent verifier repeats per update (default 1).' },
+    }),
+    output: outputText(),
+    async execute(args: Record<string, unknown>, exec: ToolExec | undefined): Promise<ToolResult> {
+      const session = exec?.agent?.session
+      if (session === undefined) return { text: 'verifier_tracker_start requires an agent session context.' }
+      const problem = stringArg(args, 'problem')
+      if (problem.length === 0) return { text: 'verifier_tracker_start requires a non-empty problem.' }
+      const state = tracker.start(session, problem, intArg(args, 'evaluations', 1))
+      return { text: tracker.renderStart(state) }
+    },
+  })
+
+  ctx.tools.register({
+    name: 'verifier_tracker_update',
+    description: [
+      'Append ONE new agent step to the online tracker and return its progress score.',
+      '',
+      'The verifier sees the task plus the trajectory prefix up to and including this step only. Call this after every meaningful action when early stopping or a live progress curve is wanted.',
+    ].join('\n'),
+    parameters: toParameterSchema({
+      step: { type: 'string', required: true, description: 'The latest agent step: action plus observed output.' },
+      model: { type: 'string', required: false, description: 'Optional verifier model override.' },
+      backend: { type: 'string', required: false, description: 'Optional backend override: auto, deepseek, or openai.' },
+      onError: { type: 'string', required: false, description: 'Optional error policy: tie or raise (default tie).' },
+    }),
+    output: outputText(),
+    async execute(args: Record<string, unknown>, exec: ToolExec | undefined): Promise<ToolResult> {
+      const session = exec?.agent?.session
+      if (session === undefined) return { text: 'verifier_tracker_update requires an agent session context.' }
+      if (!tracker.hasStarted(session)) return { text: 'Start the tracker first with verifier_tracker_start.' }
+      const step = stringArg(args, 'step')
+      if (step.length === 0) return { text: 'verifier_tracker_update requires a non-empty step.' }
+      try {
+        const state = tracker.pushStep(session, step)
+        const result = await trackProgress(
+          state.problem,
+          state.steps,
+          [state.steps.length],
+          state.evaluations,
+          optionsFor(ctx, config, args, exec),
+        )
+        const score = result.scores[0] ?? 0.5
+        tracker.recordScore(session, score)
+        return { text: tracker.renderUpdate(tracker.snapshot(session)) }
+      } catch (error) {
+        return { text: `verifier_tracker_update failed: ${describeError(error)}` }
+      }
+    },
+  })
+
+  ctx.tools.register({
+    name: 'verifier_tracker_result',
+    description: [
+      'Return the online progress curve collected so far for the current session.',
+      '',
+      'The curve is stateful and resume-safe: tracker tool calls are durable session events, so a restart rebuilds the same steps and scores.',
+    ].join('\n'),
+    parameters: toParameterSchema({}),
+    output: outputText(),
+    async execute(_args: Record<string, unknown>, exec: ToolExec | undefined): Promise<ToolResult> {
+      const session = exec?.agent?.session
+      if (session === undefined) return { text: 'verifier_tracker_result requires an agent session context.' }
+      if (!tracker.hasStarted(session)) return { text: 'Start the tracker first with verifier_tracker_start.' }
+      return { text: tracker.renderResult(tracker.snapshot(session)) }
+    },
+  })
+
 
   ctx.tools.register({
     name: 'verifier_status',

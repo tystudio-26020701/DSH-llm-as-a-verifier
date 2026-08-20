@@ -31,6 +31,23 @@
     # tie scores a failed verifier call 0.5/0.5; raise propagates the error.
     onError: tie
 
+
+# ── optional final-answer verification gate ─────────────────────────────────
+
+# Off by default. Set `enabled: true` to auto-score a text-only final answer
+# at each turn boundary and steer the model back when it scores below
+# `threshold`. The gate never blocks a turn when verification itself fails.
+- id: verify-gate
+  name: ./verify-gate.mjs
+  config:
+    enabled: false
+    threshold: 0.6
+    maxGatesPerTurn: 1
+    evaluations: 1
+    criteria: general
+    includeSubagents: false
+
+
 # ── persona ─────────────────────────────────────────────────────────────────
 
 # A fixed, small system prompt keeps the verifier tools' own descriptions as

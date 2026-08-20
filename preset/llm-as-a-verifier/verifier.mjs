@@ -446,14 +446,181 @@ function pptResult(input) {
   });
 }
 
+// src/lib/online-tracker.ts
+function idOf(session) {
+  return session.id ?? session.sessionId ?? "session";
+}
+function eventData(event) {
+  const data = event.data;
+  return typeof data === "object" && data !== null ? data : {};
+}
+function stringifyContent(value) {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    return value.map((block) => {
+      if (typeof block === "string") return block;
+      if (typeof block === "object" && block !== null && "text" in block) {
+        return String(block.text);
+      }
+      return "";
+    }).filter((part) => part.length > 0).join("\n");
+  }
+  if (typeof value === "object" && value !== null && "text" in value) {
+    return String(value.text);
+  }
+  return "";
+}
+function parseStart(args) {
+  try {
+    const parsed = JSON.parse(args);
+    const problem = typeof parsed.problem === "string" ? parsed.problem : "";
+    if (problem.length === 0) return void 0;
+    const evaluations = typeof parsed.evaluations === "number" && Number.isInteger(parsed.evaluations) && parsed.evaluations >= 1 ? parsed.evaluations : 1;
+    return { problem, evaluations };
+  } catch {
+    return void 0;
+  }
+}
+function parseUpdate(args) {
+  try {
+    const parsed = JSON.parse(args);
+    return typeof parsed.step === "string" ? parsed.step : void 0;
+  } catch {
+    return void 0;
+  }
+}
+var SCORE_PATTERN = /Latest progress after step (\d+): ([0-9.]+)/;
+var RESULT_PREFIX = "Tracker started.";
+function applyStart(state, args) {
+  const parsed = parseStart(args);
+  if (parsed === void 0) return false;
+  state.problem = parsed.problem;
+  state.steps = [];
+  state.scores = [];
+  state.evaluations = parsed.evaluations;
+  return true;
+}
+function applyUpdate(state, args) {
+  const step = parseUpdate(args);
+  if (step === void 0 || state.problem.length === 0) return false;
+  state.steps.push(step);
+  state.scores.push(null);
+  return true;
+}
+function applyResult(state, text) {
+  const match = SCORE_PATTERN.exec(text);
+  if (match === null) return;
+  const step = Number(match[1]);
+  const score = Number(match[2]);
+  if (!Number.isInteger(step) || step < 1 || step > state.scores.length) return;
+  if (!Number.isFinite(score)) return;
+  state.scores[step - 1] = score;
+}
+var OnlineProgressTracker = class {
+  sessions = /* @__PURE__ */ new Map();
+  pending = /* @__PURE__ */ new Map();
+  ensure(session) {
+    const id = idOf(session);
+    const existing = this.sessions.get(id);
+    if (existing !== void 0) return existing;
+    const state = { problem: "", steps: [], scores: [], evaluations: 1 };
+    this.sessions.set(id, state);
+    const pendingCalls = /* @__PURE__ */ new Map();
+    this.pending.set(id, pendingCalls);
+    for (const raw of session.events ?? []) {
+      this.apply(raw, state, pendingCalls);
+    }
+    return state;
+  }
+  apply(event, state, pending) {
+    const type = event.type ?? "";
+    const data = eventData(event);
+    if (type === "tool/call") {
+      const name2 = typeof data.name === "string" ? data.name : "";
+      const args = typeof data.arguments === "string" ? data.arguments : "";
+      const callId = typeof data.callId === "string" ? data.callId : "";
+      if (name2 === "verifier_tracker_start") {
+        applyStart(state, args);
+      } else if (name2 === "verifier_tracker_update") {
+        if (applyUpdate(state, args)) pending.set(callId, state.steps.length - 1);
+      }
+      return;
+    }
+    if (type === "tool/result") {
+      const callId = typeof data.callId === "string" ? data.callId : "";
+      const index = pending.get(callId);
+      if (index === void 0) return;
+      pending.delete(callId);
+      const message = data.message ?? event.message;
+      applyResult(state, stringifyContent(message));
+    }
+  }
+  observe(session, event) {
+    const id = idOf(session);
+    const state = this.ensure(session);
+    const pending = this.pending.get(id) ?? /* @__PURE__ */ new Map();
+    this.pending.set(id, pending);
+    this.apply(event, state, pending);
+  }
+  start(session, problem, evaluations = 1) {
+    const state = this.ensure(session);
+    state.problem = problem;
+    state.steps = [];
+    state.scores = [];
+    state.evaluations = Math.max(1, Math.floor(evaluations));
+    return state;
+  }
+  pushStep(session, step) {
+    const state = this.ensure(session);
+    if (state.problem.length === 0) throw new Error("start the tracker first with verifier_tracker_start");
+    state.steps.push(step);
+    state.scores.push(null);
+    return state;
+  }
+  recordScore(session, score) {
+    const state = this.ensure(session);
+    state.scores[state.scores.length - 1] = score;
+  }
+  snapshot(session) {
+    const state = this.ensure(session);
+    return {
+      problem: state.problem,
+      steps: [...state.steps],
+      scores: [...state.scores],
+      evaluations: state.evaluations
+    };
+  }
+  hasStarted(session) {
+    return this.ensure(session).problem.length > 0;
+  }
+  renderStart(state) {
+    return `${RESULT_PREFIX} Problem: ${state.problem}
+Evaluations: ${state.evaluations}`;
+  }
+  renderUpdate(state) {
+    const index = state.steps.length;
+    const score = state.scores[index - 1] ?? null;
+    return `Latest progress after step ${index}: ${score === null ? "unavailable" : score.toFixed(5)}`;
+  }
+  renderResult(state) {
+    if (state.steps.length === 0) return "No tracker updates yet.";
+    const lines = ["Progress curve (step: score):"];
+    state.steps.forEach((_, index) => {
+      const score = state.scores[index] ?? null;
+      lines.push(`  ${index + 1}: ${score === null ? "unavailable" : score.toFixed(5)}`);
+    });
+    return lines.join("\n");
+  }
+};
+
 // src/lib/session-transcript.ts
 var MAX_STEPS = 400;
 var MAX_STEP_CHARS = 8e3;
 var MAX_TOTAL_CHARS = 16e4;
-function idOf(session) {
+function idOf2(session) {
   return session.id ?? session.sessionId ?? "session";
 }
-function stringifyContent(value) {
+function stringifyContent2(value) {
   if (typeof value === "string") return value;
   if (Array.isArray(value)) {
     return value.map((block) => {
@@ -472,7 +639,7 @@ function stringifyContent(value) {
 function eventType(event) {
   return event?.type ?? "";
 }
-function eventData(event) {
+function eventData2(event) {
   const data = event?.data;
   return typeof data === "object" && data !== null ? data : {};
 }
@@ -499,7 +666,7 @@ ${suffix.trim()}`.slice(0, MAX_STEP_CHARS);
 function applyEvent(state, event) {
   const type = eventType(event);
   if (type === "tool/call") {
-    const data = eventData(event);
+    const data = eventData2(event);
     const name2 = typeof data.name === "string" ? data.name : "tool";
     const args = typeof data.arguments === "string" ? data.arguments : "";
     appendBounded(state, `Action: ${name2}${args.length > 0 ? `
@@ -507,17 +674,17 @@ Arguments: ${args}` : ""}`);
     return;
   }
   if (type === "tool/result") {
-    const data = eventData(event);
+    const data = eventData2(event);
     const message = data.message ?? event.message;
-    const text = stringifyContent(message);
+    const text = stringifyContent2(message);
     if (text.length > 0) appendToLast(state, `Output:
 ${text}`);
     return;
   }
   if (type === "assistant/message") {
-    const data = eventData(event);
+    const data = eventData2(event);
     const message = data.message ?? event.message;
-    const text = stringifyContent(message);
+    const text = stringifyContent2(message);
     if (text.length > 0) appendBounded(state, `Agent message:
 ${text}`);
   }
@@ -529,11 +696,11 @@ var TranscriptRecorder = class {
     for (const event of session.events ?? []) {
       applyEvent(state, event);
     }
-    this.sessions.set(idOf(session), state);
+    this.sessions.set(idOf2(session), state);
     return state;
   }
   ensure(session) {
-    const id = idOf(session);
+    const id = idOf2(session);
     const existing = this.sessions.get(id);
     if (existing !== void 0) return existing;
     return this.scan(session);
@@ -542,7 +709,7 @@ var TranscriptRecorder = class {
     applyEvent(this.ensure(session), event);
   }
   snapshot(session) {
-    const state = this.sessions.get(idOf(session));
+    const state = this.sessions.get(idOf2(session));
     if (state !== void 0) return [...state.steps];
     return this.scan(session).steps;
   }
@@ -1192,8 +1359,10 @@ function describeError(error) {
 }
 function apply(ctx, config = {}) {
   const recorder = new TranscriptRecorder();
+  const tracker = new OnlineProgressTracker();
   ctx.on("session/event", (session, event) => {
     recorder.observe(session, event);
+    tracker.observe(session, event);
   });
   ctx.tools.register({
     name: "verifier_compare",
@@ -1389,6 +1558,80 @@ function apply(ctx, config = {}) {
       } catch (error) {
         return { text: `verifier_session failed: ${describeError(error)}` };
       }
+    }
+  });
+  ctx.tools.register({
+    name: "verifier_tracker_start",
+    description: [
+      "Start an ONLINE progress tracker for one task.",
+      "",
+      "After starting, feed the session steps one at a time with verifier_tracker_update; each update scores only the prefix seen so far, so the verifier never sees the future. Use the returned score for early stopping or resampling, and verifier_tracker_result to print the curve."
+    ].join("\n"),
+    parameters: toParameterSchema({
+      problem: { type: "string", required: true, description: "The task this tracker will measure progress against." },
+      evaluations: { type: "number", required: false, description: "Independent verifier repeats per update (default 1)." }
+    }),
+    output: outputText(),
+    async execute(args, exec) {
+      const session = exec?.agent?.session;
+      if (session === void 0) return { text: "verifier_tracker_start requires an agent session context." };
+      const problem = stringArg(args, "problem");
+      if (problem.length === 0) return { text: "verifier_tracker_start requires a non-empty problem." };
+      const state = tracker.start(session, problem, intArg(args, "evaluations", 1));
+      return { text: tracker.renderStart(state) };
+    }
+  });
+  ctx.tools.register({
+    name: "verifier_tracker_update",
+    description: [
+      "Append ONE new agent step to the online tracker and return its progress score.",
+      "",
+      "The verifier sees the task plus the trajectory prefix up to and including this step only. Call this after every meaningful action when early stopping or a live progress curve is wanted."
+    ].join("\n"),
+    parameters: toParameterSchema({
+      step: { type: "string", required: true, description: "The latest agent step: action plus observed output." },
+      model: { type: "string", required: false, description: "Optional verifier model override." },
+      backend: { type: "string", required: false, description: "Optional backend override: auto, deepseek, or openai." },
+      onError: { type: "string", required: false, description: "Optional error policy: tie or raise (default tie)." }
+    }),
+    output: outputText(),
+    async execute(args, exec) {
+      const session = exec?.agent?.session;
+      if (session === void 0) return { text: "verifier_tracker_update requires an agent session context." };
+      if (!tracker.hasStarted(session)) return { text: "Start the tracker first with verifier_tracker_start." };
+      const step = stringArg(args, "step");
+      if (step.length === 0) return { text: "verifier_tracker_update requires a non-empty step." };
+      try {
+        const state = tracker.pushStep(session, step);
+        const result = await trackProgress(
+          state.problem,
+          state.steps,
+          [state.steps.length],
+          state.evaluations,
+          optionsFor(ctx, config, args, exec)
+        );
+        const score = result.scores[0] ?? 0.5;
+        tracker.recordScore(session, score);
+        return { text: tracker.renderUpdate(tracker.snapshot(session)) };
+      } catch (error) {
+        return { text: `verifier_tracker_update failed: ${describeError(error)}` };
+      }
+    }
+  });
+  ctx.tools.register({
+    name: "verifier_tracker_result",
+    description: [
+      "Return the online progress curve collected so far for the current session.",
+      "",
+      "The curve is stateful and resume-safe: tracker tool calls are durable session events, so a restart rebuilds the same steps and scores."
+    ].join("\n"),
+    parameters: toParameterSchema({}),
+    output: outputText(),
+    async execute(_args, exec) {
+      const session = exec?.agent?.session;
+      if (session === void 0) return { text: "verifier_tracker_result requires an agent session context." };
+      if (!tracker.hasStarted(session)) return { text: "Start the tracker first with verifier_tracker_start." };
+      return { text: tracker.renderResult(tracker.snapshot(session)) };
     }
   });
   ctx.tools.register({

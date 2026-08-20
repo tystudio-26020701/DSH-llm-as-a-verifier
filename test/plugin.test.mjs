@@ -45,7 +45,7 @@ test('plugin registers five verifier tools and a session listener', () => {
   plugin.apply(ctx, {})
   assert.deepEqual(
     tools.map((tool) => tool.name).sort(),
-    ['verifier_compare', 'verifier_select', 'verifier_session', 'verifier_status', 'verifier_track'],
+    ['verifier_compare', 'verifier_select', 'verifier_session', 'verifier_status', 'verifier_track', 'verifier_tracker_result', 'verifier_tracker_start', 'verifier_tracker_update'],
   )
   assert.equal(events[0]?.event, 'session/event')
 })

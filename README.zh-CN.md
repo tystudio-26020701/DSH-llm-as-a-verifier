@@ -22,7 +22,9 @@
 | `verifier_select` | Best-of-N 的胜者、逐候选分数与排序 |
 | `verifier_track` | 已完成轨迹在指定检查点的进度曲线 |
 | `verifier_session` | 当前会话持久化轨迹的进度曲线 |
+| `verifier_tracker_start` / `_update` / `_result` | 在线增量进度曲线，只评分当前前缀 |
 | `verifier_status` | 后端、Rust 核心版本、token 用量与工作目录 |
+| `verify-gate`（可选插件行） | 回合结束前自动评分最终答复，低于阈值则引导模型返工 |
 
 本仓库是对已发表方法论的独立原创实现：
 
@@ -104,6 +106,42 @@ cp -R preset/llm-as-a-verifier "$dsh_home/.agent-presets/llm-as-a-verifier"
 
 让模型调用 `verifier_status`。健康安装会报告后端路由、默认模型
 `deepseek-v4-flash`（或你的覆盖值）以及 Rust 核心版本。
+
+
+## 在线进度追踪器
+
+`verifier_tracker_*` 等价迁移了已发表的增量 `ProgressTracker`：每次 update
+只追加一步、只对“迄今前缀”打分。状态从持久化工具事件重建，重启后可恢复。
+
+```text
+verifier_tracker_start(problem="任务", evaluations=2)
+verifier_tracker_update(step="第 1 步动作 + 输出")  -> 0.03
+verifier_tracker_update(step="第 2 步动作 + 输出")  -> 0.41
+verifier_tracker_result()
+```
+
+适合在长 rollout 中做早停或重采样。
+
+## 最终答复自动验证门
+
+预设挂载了可选的 `verify-gate` 行。设置 `enabled: true` 后，每个回合即将
+以纯文本最终答复结束时，插件会结合会话任务自动打分；低于 `threshold` 就
+通过 `agent.steer` 把模型拉回去返工。验证调用失败时绝不阻塞回合关闭。
+
+编辑 `preset/llm-as-a-verifier/agent.cordis.yml` 启用：
+
+```yaml
+- id: verify-gate
+  name: ./verify-gate.mjs
+  config:
+    enabled: true
+    threshold: 0.6
+    maxGatesPerTurn: 1
+    evaluations: 1
+    criteria: general
+    includeSubagents: false
+```
+
 
 ## 使用方式
 

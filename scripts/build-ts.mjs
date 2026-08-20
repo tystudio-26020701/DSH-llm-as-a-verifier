@@ -35,6 +35,19 @@ await build({
 })
 
 await build({
+  entryPoints: [resolve(root, 'src/plugins/verify-gate.ts')],
+  outfile: resolve(root, 'preset/llm-as-a-verifier/verify-gate.mjs'),
+  bundle: true,
+  format: 'esm',
+  platform: 'node',
+  target: 'node22',
+  legalComments: 'inline',
+  banner: { js: legal },
+  logLevel: 'info',
+})
+
+
+await build({
   entryPoints: [resolve(root, 'src/lib/index.ts')],
   outfile: resolve(root, 'dist/lib/index.mjs'),
   bundle: true,

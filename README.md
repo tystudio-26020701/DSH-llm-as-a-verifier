@@ -27,7 +27,9 @@ session tools:
 | `verifier_select` | Best-of-N winner, per-candidate scores, ranking |
 | `verifier_track` | Progress curve at chosen checkpoints of a finished trajectory |
 | `verifier_session` | Progress curve over the current session's durable transcript |
+| `verifier_tracker_start` / `_update` / `_result` | Online incremental progress curve with prefix-only scoring |
 | `verifier_status` | Backend, Rust core version, token usage, working directory |
+| `verify-gate` (opt-in plugin row) | Auto-scores a turn's final answer and steers the model back below a threshold |
 
 The methodology is implemented as an independent original codebase:
 
@@ -120,6 +122,45 @@ five verifier tools.
 Ask the model to call `verifier_status`. A healthy install reports the backend
 route, the `deepseek-v4-flash` model (or your override), and the Rust core
 version.
+
+
+## Online progress tracker
+
+`verifier_tracker_*` mirrors the published incremental `ProgressTracker`:
+every update appends exactly one step and scores only the prefix seen so far.
+The state is event-sourced from durable tool calls, so a restart rebuilds the
+curve.
+
+```text
+verifier_tracker_start(problem="the task", evaluations=2)
+verifier_tracker_update(step="action 1 + output")  -> 0.03
+verifier_tracker_update(step="action 2 + output")  -> 0.41
+verifier_tracker_result()
+```
+
+Use it for early stopping or resampling during long rollouts.
+
+## Automatic final-answer gate
+
+The preset mounts an opt-in `verify-gate` row. When `enabled: true`, every
+turn that is about to close with a text-only final answer is scored against
+the session task; answers below `threshold` are steered back to the model
+instead of closing the turn. A verifier failure never blocks the turn.
+
+Enable it by editing `preset/llm-as-a-verifier/agent.cordis.yml`:
+
+```yaml
+- id: verify-gate
+  name: ./verify-gate.mjs
+  config:
+    enabled: true
+    threshold: 0.6
+    maxGatesPerTurn: 1
+    evaluations: 1
+    criteria: general
+    includeSubagents: false
+```
+
 
 ## Usage
 

@@ -12,7 +12,9 @@ Maintained by Beijing Taiyin Zhaowu Technology Co., Ltd.
 - `verifier_select` — best-of-N probabilistic pivot tournament.
 - `verifier_track` — checkpoint progress curve for a finished trajectory.
 - `verifier_session` — progress curve over this session's durable transcript.
+- `verifier_tracker_start` / `verifier_tracker_update` / `verifier_tracker_result` — online incremental progress curve.
 - `verifier_status` — backend, core version, and token usage report.
+- `verify-gate` — optional row that auto-verifies text-only final answers at turn boundaries; disabled by default.
 
 ## Backend
 
