@@ -1,0 +1,33 @@
+# Local research materials — never tracked, never pushed
+/references/
+
+# Local-only agent memory and review notes — never pushed
+/AGENTS.md
+/AGENTS.local.md
+/LOCAL-*.md
+/LOCAL-NOTES.md
+/notes/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Node tooling (build outputs under preset/ are committed intentionally)
+/node_modules/
+/dist/
+/coverage/
+*.tsbuildinfo
+/.npm-cache/
+
+# Rust tooling
+/target/
+**/target/
+/.cargo-home/
+/.wasm-sysroot/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp

@@ -1,0 +1,55 @@
+{
+  "name": "dsh-llm-as-a-verifier",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness preset that brings fine-grained LLM verification, probabilistic pivot-tournament best-of-N selection, and checkpoint progress tracking into agent sessions.",
+  "type": "module",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "author": {
+    "name": "Beijing Taiyin Zhaowu Technology Co., Ltd.",
+    "url": "https://github.com/tystudio-26020701"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tystudio-26020701/DSH-llm-as-a-verifier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tystudio-26020701/DSH-llm-as-a-verifier/issues"
+  },
+  "homepage": "https://github.com/tystudio-26020701/DSH-llm-as-a-verifier#readme",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "files": [
+    "preset/",
+    "scripts/",
+    "crates/verifier-core/",
+    "LICENSE",
+    "COMMERCIAL-LICENSE.md",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "scripts": {
+    "build:wasm": "node scripts/build-wasm.mjs",
+    "build:ts": "node scripts/build-ts.mjs",
+    "build": "npm run build:wasm && npm run build:ts",
+    "test": "npm run test:js && npm run test:rust",
+    "test:js": "node --test test/*.test.mjs",
+    "test:rust": "cargo test --manifest-path crates/verifier-core/Cargo.toml",
+    "check": "npm run build && npm run test:js && npm run test:rust && node scripts/verify-clean.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "deepseek",
+    "llm-verifier",
+    "best-of-n",
+    "logprobs",
+    "agent",
+    "verifier"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}

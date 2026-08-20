@@ -1,0 +1,16 @@
+# Generated preset bundles
+preset/**/*.mjs linguist-generated=true
+preset/**/*.wasm -text
+dist/**/*.mjs linguist-generated=true
+dist/**/*.wasm -text
+
+# Line endings
+* text=auto
+*.mjs text eol=lf
+*.ts text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.rs text eol=lf
+*.wasm binary
