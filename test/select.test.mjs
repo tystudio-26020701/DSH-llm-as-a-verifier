@@ -74,3 +74,42 @@ test('selectTrajectories ranks three candidates with the pivot tournament', asyn
     backend.complete = originalComplete
   }
 })
+
+test('score cache does not reuse entries across different candidate sets', async () => {
+  const { mkdtemp } = await import('node:fs/promises')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
+  const directory = await mkdtemp(join(tmpdir(), 'dsh-verifier-cache-'))
+  const cachePath = join(directory, 'cache.json')
+
+  const originalComplete = backend.complete
+  let calls = 0
+  backend.complete = async (prompt) => {
+    calls += 1
+    const letterA = quality.get(letterFor(prompt, 'A')) ?? 'T'
+    const letterB = quality.get(letterFor(prompt, 'B')) ?? 'T'
+    return {
+      text: `<score_A> ${letterA} </score_A>\n<score_B> ${letterB} </score_B>`,
+      tokens: null,
+      positions: null,
+      usage: { inputTokens: 10, cachedInputTokens: 0, outputTokens: 10, reasoningTokens: 0 },
+    }
+  }
+  try {
+    const first = ['candidate-zero', 'candidate-one', 'candidate-two']
+    const options = { backendInstance: backend, cache: cachePath }
+    await selectTrajectories('Pick the strongest.', first, { Quality: 'Prefer A.' }, 1, 2, 0, options)
+    const firstRunCalls = calls
+    assert.ok(firstRunCalls > 0)
+    await selectTrajectories('Pick the strongest.', first, { Quality: 'Prefer A.' }, 1, 2, 0, options)
+    assert.equal(calls, firstRunCalls, 'identical rerun should be fully cached')
+
+    quality.set('candidate-alpha', 'A')
+    quality.set('candidate-beta', 'C')
+    quality.set('candidate-gamma', 'T')
+    await selectTrajectories('Pick the strongest.', ['candidate-alpha', 'candidate-beta', 'candidate-gamma'], { Quality: 'Prefer A.' }, 1, 2, 0, options)
+    assert.ok(calls > firstRunCalls, 'changed candidates must not reuse the old cache')
+  } finally {
+    backend.complete = originalComplete
+  }
+})

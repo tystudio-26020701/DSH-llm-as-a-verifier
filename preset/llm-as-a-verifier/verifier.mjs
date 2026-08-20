@@ -959,7 +959,7 @@ async function compareTrajectories(problem, traceA, traceB, criteria, evaluation
   };
   const rewards = await scoreDirected(
     context,
-    hashText(problem),
+    hashText(JSON.stringify([problem, traceA, traceB])),
     problem,
     [traceA, traceB],
     0,
@@ -998,7 +998,7 @@ async function selectTrajectories(problem, candidates, criteria, evaluations = 4
     criteria: document.criteria,
     evaluations: Math.max(1, evaluations)
   };
-  const taskKey = `task-${hashText(problem)}`;
+  const taskKey = `task-${hashText(JSON.stringify([problem, ...candidates]))}`;
   const ring = await pptRing(candidates.length, seed);
   const ringJobs = await buildJobs(context, taskKey, problem, candidates, ring);
   const ringScores = await runScoreJobs(context, ringJobs);

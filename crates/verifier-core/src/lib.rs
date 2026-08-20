@@ -378,8 +378,8 @@ fn score_distribution_input(input: &Value) -> Result<(String, Vec<String>, Vec<P
     let text = optional_string(input, "text").unwrap_or("").to_string();
     let tokens = parse_optional_string_array(input, "tokens").unwrap_or_default();
     let positions = match input.get("positions") {
-        Some(value) => parse_positions(value)?,
-        None => Vec::new(),
+        Some(value) if !value.is_null() => parse_positions(value)?,
+        _ => Vec::new(),
     };
     Ok((text, tokens, positions))
 }
@@ -908,6 +908,18 @@ mod tests {
         let expected = normalized_pair_score(pair_raw_value('D').expect("D is valid"));
         assert!((score - expected).abs() < 1e-9);
     }
+
+    #[test]
+    fn extract_score_accepts_null_positions_and_falls_back() {
+        let input = parse(
+            r#"{"text": "analysis\n<score_A> B </score_A>", "tag": "score_A", "tokens": null, "positions": null}"#,
+        );
+        let score = extract_score(&input).expect("score extracts");
+        let score = score.as_f64().expect("number");
+        let expected = normalized_pair_score(pair_raw_value('B').expect("B is valid"));
+        assert!((score - expected).abs() < 1e-9);
+    }
+
 
     #[test]
     fn progress_scale_inverts_letters() {
