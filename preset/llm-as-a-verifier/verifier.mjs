@@ -919,7 +919,7 @@ async function runScoreJobs(context, jobs) {
     if (first !== void 0) warm.push(first);
     rest.push(...group);
   }
-  for (const job of warm) await execute(job);
+  await mapWithConcurrency(warm, context.backend.maxConcurrency, execute);
   await mapWithConcurrency(rest, context.backend.maxConcurrency, execute);
   const normalized = /* @__PURE__ */ new Map();
   for (const [key, aggregate] of byPair) {

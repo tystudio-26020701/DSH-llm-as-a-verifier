@@ -297,7 +297,7 @@ async function runScoreJobs(
     if (first !== undefined) warm.push(first)
     rest.push(...group)
   }
-  for (const job of warm) await execute(job)
+  await mapWithConcurrency(warm, context.backend.maxConcurrency, execute)
   await mapWithConcurrency(rest, context.backend.maxConcurrency, execute)
 
   const normalized = new Map<string, DirectedReward>()
