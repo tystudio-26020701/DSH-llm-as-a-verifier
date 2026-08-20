@@ -9,6 +9,7 @@
 
 import { readFile } from 'node:fs/promises'
 import { isAbsolute, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 export interface Criterion {
   id: string
@@ -141,7 +142,9 @@ export function normalizeCriteria(argument: CriteriaArgument): Criterion[] {
   })
 }
 
-const BUNDLED_CRITERIA_ROOT = new URL('../../preset/llm-as-a-verifier/criteria/', import.meta.url)
+const BUNDLED_CRITERIA_DIR = fileURLToPath(
+  new URL('../../preset/llm-as-a-verifier/criteria/', import.meta.url),
+)
 
 async function readCriteriaFile(pathOrName: string, cwd: string): Promise<CriteriaDocument> {
   const candidates: string[] = []
@@ -155,7 +158,7 @@ async function readCriteriaFile(pathOrName: string, cwd: string): Promise<Criter
     } else {
       candidates.push(resolve(cwd, 'criteria', withExtension))
     }
-    candidates.push(new URL(withExtension, BUNDLED_CRITERIA_ROOT).pathname)
+    candidates.push(resolve(BUNDLED_CRITERIA_DIR, withExtension))
   }
 
   let lastError: unknown

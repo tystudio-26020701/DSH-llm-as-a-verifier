@@ -103,7 +103,10 @@ async function resolveBackend(ctx, settings, overrides = {}) {
     baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL;
   } else if (merged.backend === "openai") {
     kind = "openai";
-    baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL;
+    if (baseUrlInput === void 0) {
+      throw new Error("OpenAI-compatible backend needs VERIFIER_BASE_URL or OPENAI_BASE_URL (or set backend to deepseek)");
+    }
+    baseUrl = baseUrlInput;
   } else if (baseUrlInput?.includes("api.deepseek.com") || baseUrlInput === void 0 && hasDeepSeekKey) {
     kind = "deepseek";
     baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL;
@@ -334,20 +337,20 @@ function backendSummary(backend) {
 
 // src/lib/core.ts
 import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 var encoder = new TextEncoder();
 var decoder = new TextDecoder();
 var wasmApi = globalThis.WebAssembly;
 var corePromise;
-async function probeCandidates() {
-  const candidates = [
-    new URL("./verifier-core.wasm", import.meta.url),
-    new URL("../verifier-core.wasm", import.meta.url),
-    new URL("../../preset/llm-as-a-verifier/verifier-core.wasm", import.meta.url)
+function probeCandidates() {
+  return [
+    fileURLToPath(new URL("./verifier-core.wasm", import.meta.url)),
+    fileURLToPath(new URL("../verifier-core.wasm", import.meta.url)),
+    fileURLToPath(new URL("../../preset/llm-as-a-verifier/verifier-core.wasm", import.meta.url))
   ];
-  return candidates.map((url) => url.pathname);
 }
 async function findWasmPath() {
-  for (const path of await probeCandidates()) {
+  for (const path of probeCandidates()) {
     try {
       await readFile(path);
       return path;
@@ -552,7 +555,7 @@ import { isAbsolute as isAbsolute2, resolve as resolve2 } from "node:path";
 // src/lib/cache.ts
 import { createHash } from "node:crypto";
 import { mkdir, readFile as readFile2, rename, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 var ScoreCache = class {
   constructor(filePath) {
     this.filePath = filePath;
@@ -593,7 +596,7 @@ var ScoreCache = class {
     await mkdir(dirname(this.filePath), { recursive: true });
     const temporary = join(
       dirname(this.filePath),
-      `.${this.filePath.split("/").pop() ?? "cache"}.${process.pid}.${Date.now()}.tmp`
+      `.${basename(this.filePath)}.${process.pid}.${Date.now()}.tmp`
     );
     await writeFile(temporary, JSON.stringify(this.data), "utf8");
     await rename(temporary, this.filePath);
@@ -613,6 +616,7 @@ var ScoreCache = class {
 // src/lib/criteria.ts
 import { readFile as readFile3 } from "node:fs/promises";
 import { isAbsolute, resolve } from "node:path";
+import { fileURLToPath as fileURLToPath2 } from "node:url";
 var HTML_COMMENT = /<!--[\s\S]*?-->/g;
 function slug(text) {
   const value = text.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 40).replace(/_+$/g, "");
@@ -701,7 +705,9 @@ function normalizeCriteria(argument) {
     return { id, name: fallbackName, description };
   });
 }
-var BUNDLED_CRITERIA_ROOT = new URL("../../preset/llm-as-a-verifier/criteria/", import.meta.url);
+var BUNDLED_CRITERIA_DIR = fileURLToPath2(
+  new URL("../../preset/llm-as-a-verifier/criteria/", import.meta.url)
+);
 async function readCriteriaFile(pathOrName, cwd) {
   const candidates = [];
   if (isAbsolute(pathOrName)) {
@@ -714,7 +720,7 @@ async function readCriteriaFile(pathOrName, cwd) {
     } else {
       candidates.push(resolve(cwd, "criteria", withExtension));
     }
-    candidates.push(new URL(withExtension, BUNDLED_CRITERIA_ROOT).pathname);
+    candidates.push(resolve(BUNDLED_CRITERIA_DIR, withExtension));
   }
   let lastError;
   for (const candidate of candidates) {

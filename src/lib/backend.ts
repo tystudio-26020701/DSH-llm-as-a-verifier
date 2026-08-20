@@ -155,7 +155,10 @@ export async function resolveBackend(
     baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL
   } else if (merged.backend === 'openai') {
     kind = 'openai'
-    baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL
+    if (baseUrlInput === undefined) {
+      throw new Error('OpenAI-compatible backend needs VERIFIER_BASE_URL or OPENAI_BASE_URL (or set backend to deepseek)')
+    }
+    baseUrl = baseUrlInput
   } else if (baseUrlInput?.includes('api.deepseek.com') || (baseUrlInput === undefined && hasDeepSeekKey)) {
     kind = 'deepseek'
     baseUrl = baseUrlInput ?? DEFAULT_DEEPSEEK_BASE_URL

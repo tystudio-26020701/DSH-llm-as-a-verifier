@@ -9,7 +9,7 @@
 
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 
 export interface ScoreCacheEntry {
   scoreA: number
@@ -68,7 +68,7 @@ export class ScoreCache {
     await mkdir(dirname(this.filePath), { recursive: true })
     const temporary = join(
       dirname(this.filePath),
-      `.${this.filePath.split('/').pop() ?? 'cache'}.${process.pid}.${Date.now()}.tmp`,
+      `.${basename(this.filePath)}.${process.pid}.${Date.now()}.tmp`,
     )
     await writeFile(temporary, JSON.stringify(this.data), 'utf8')
     await rename(temporary, this.filePath)

@@ -11,6 +11,7 @@
  */
 
 import { readFile } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
 
 export interface LogprobToken {
   token: string
@@ -92,17 +93,16 @@ const decoder = new TextDecoder()
 const wasmApi = (globalThis as { WebAssembly?: unknown }).WebAssembly as unknown as WebAssemblyApi | undefined
 let corePromise: Promise<CoreInstance> | undefined
 
-async function probeCandidates(): Promise<string[]> {
-  const candidates = [
-    new URL('./verifier-core.wasm', import.meta.url),
-    new URL('../verifier-core.wasm', import.meta.url),
-    new URL('../../preset/llm-as-a-verifier/verifier-core.wasm', import.meta.url),
+function probeCandidates(): string[] {
+  return [
+    fileURLToPath(new URL('./verifier-core.wasm', import.meta.url)),
+    fileURLToPath(new URL('../verifier-core.wasm', import.meta.url)),
+    fileURLToPath(new URL('../../preset/llm-as-a-verifier/verifier-core.wasm', import.meta.url)),
   ]
-  return candidates.map((url) => url.pathname)
 }
 
 async function findWasmPath(): Promise<string> {
-  for (const path of await probeCandidates()) {
+  for (const path of probeCandidates()) {
     try {
       await readFile(path)
       return path
