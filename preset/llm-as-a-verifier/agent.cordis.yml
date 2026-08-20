@@ -1,0 +1,105 @@
+# LLM-as-a-Verifier agent preset.
+#
+# The preset adds the verifier tool station to a lean coding-agent
+# composition. Verification traffic is routed by the verifier row through the
+# DeepSeek API or any OpenAI-compatible endpoint that returns token-level
+# logprobs; the model-facing tools live in `verifier.mjs`, and the Rust
+# methodology core is loaded from `verifier-core.wasm`.
+#
+# Tool rows below use official DeepSeek Harness packages so shell, filesystem,
+# and job control behave exactly like the standard harness catalog. Rows that
+# own agent-scoped services use entry-local realms; plain tool rows register
+# into this preset's layer directly.
+
+# ── verifier station ────────────────────────────────────────────────────────
+
+- id: verifier-tools
+  name: ./verifier.mjs
+  config:
+    # auto selects DeepSeek when DEEPSEEK_API_KEY is present, otherwise an
+    # OpenAI-compatible endpoint selected through VERIFIER_BASE_URL.
+    backend: auto
+    # DeepSeek reasoning effort: off | low | high | max. Only used by the
+    # official DeepSeek route.
+    effort: high
+    # Upper bound for concurrent verifier calls. Lower this for small local
+    # model servers that cannot absorb 8 parallel requests.
+    maxConcurrency: 8
+    # Successful comparisons are persisted under this workspace-relative
+    # JSON cache so repeated best-of-N runs only pay for new comparisons.
+    cachePath: .dsh-verifier-cache.json
+    # tie scores a failed verifier call 0.5/0.5; raise propagates the error.
+    onError: tie
+
+# ── persona ─────────────────────────────────────────────────────────────────
+
+# A fixed, small system prompt keeps the verifier tools' own descriptions as
+# the only added surface; runtime context snapshots stay off.
+- id: persona
+  name: '@deepseek-ai/dsh-persona'
+  config:
+    text: You are a helpful software engineer assistant.
+    complete: true
+    includeRuntimeContext: false
+
+# ── persistent shell ────────────────────────────────────────────────────────
+
+# The PTY registry is agent-owned and therefore lives in an entry-local realm.
+# The persistent bash tool keeps its state across calls inside a session.
+- id: persistent-shell
+  name: cordis:group
+  group: true
+  isolate:
+    terminals: true
+  config:
+    - id: pty
+      name: '@deepseek-ai/dsh-terminal'
+
+    - id: terminal-bash
+      name: '@deepseek-ai/dsh-terminal-bash'
+      config:
+        timeoutMs: 300000
+
+    - id: persistent-bash
+      name: '@deepseek-ai/dsh-tool-bash-persistent'
+      config:
+        timeoutMs: 300000
+        description: |-
+          Run commands in a bash shell.
+          * The command string is plain bash, not XML-escaped.
+          * Shell state persists across calls within the session.
+          * No internet access through this tool.
+          * Long-running work should run in the background.
+          * Avoid commands that print an extremely large amount of output.
+
+# ── filesystem ──────────────────────────────────────────────────────────────
+
+# The str_replace_editor preset-local filesystem mirrors the host's bare local
+# filesystem and is the editor's backing store.
+- id: filesystem
+  name: cordis:group
+  group: true
+  isolate:
+    fs: true
+  config:
+    - id: fs-local
+      name: '@deepseek-ai/dsh-fs-local'
+      config:
+        cwd: !!js process.env.DSH_CWD ?? process.cwd()
+
+    - id: str-replace-editor
+      name: '@deepseek-ai/dsh-tool-str-replace-editor'
+      config:
+        maxOutputChars: 16000
+
+# Standard read/write/edit tools over the host's sandboxed filesystem.
+- id: tool-fs
+  name: '@deepseek-ai/dsh-tool-fs'
+
+# Standard glob/grep search tools.
+- id: tool-fs-search
+  name: '@deepseek-ai/dsh-tool-fs-search'
+
+# Background job controls (job_list / job_output / job_kill).
+- id: tool-jobs
+  name: '@deepseek-ai/dsh-tool-jobs'

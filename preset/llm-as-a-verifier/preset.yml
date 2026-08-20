@@ -1,0 +1,3 @@
+name: LLM-as-a-Verifier
+description: Fine-grained logprob verification tools for agents — pairwise compare, probabilistic pivot-tournament best-of-N selection, checkpoint progress tracking, and live-session self-verification.
+order: 20
