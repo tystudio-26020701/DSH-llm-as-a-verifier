@@ -115,7 +115,7 @@ async function resolveBackend(ctx, settings, overrides = {}) {
     baseUrl = DEFAULT_DEEPSEEK_BASE_URL;
   }
   const apiKeyEnv = merged.apiKeyEnv ?? (kind === "deepseek" ? "DEEPSEEK_API_KEY" : "OPENAI_API_KEY");
-  const apiKey = merged.apiKey ?? await resolveCredential(ctx, apiKeyEnv);
+  const apiKey = merged.apiKey ?? await resolveCredential(ctx, "VERIFIER_API_KEY") ?? await resolveCredential(ctx, apiKeyEnv);
   if (apiKey === void 0 || apiKey.length === 0) {
     const hint = kind === "deepseek" ? "set DEEPSEEK_API_KEY (or VERIFIER_API_KEY) in the environment or DSH credentials" : "set OPENAI_API_KEY (or VERIFIER_API_KEY) for the endpoint in the environment or DSH credentials";
     const error = new Error(`verifier backend is not configured: ${hint}`);

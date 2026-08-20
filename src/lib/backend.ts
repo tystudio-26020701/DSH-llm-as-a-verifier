@@ -168,7 +168,9 @@ export async function resolveBackend(
   }
 
   const apiKeyEnv = merged.apiKeyEnv ?? (kind === 'deepseek' ? 'DEEPSEEK_API_KEY' : 'OPENAI_API_KEY')
-  const apiKey = merged.apiKey ?? await resolveCredential(ctx, apiKeyEnv)
+  const apiKey = merged.apiKey
+    ?? await resolveCredential(ctx, 'VERIFIER_API_KEY')
+    ?? await resolveCredential(ctx, apiKeyEnv)
   if (apiKey === undefined || apiKey.length === 0) {
     const hint = kind === 'deepseek'
       ? 'set DEEPSEEK_API_KEY (or VERIFIER_API_KEY) in the environment or DSH credentials'
