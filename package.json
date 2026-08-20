@@ -22,9 +22,12 @@
   "files": [
     "preset/",
     "scripts/",
+    "docs/",
     "crates/verifier-core/",
     "LICENSE",
     "COMMERCIAL-LICENSE.md",
+    "ACKNOWLEDGEMENTS.md",
+    "THIRD_PARTY_NOTICES.md",
     "README.md",
     "README.zh-CN.md"
   ],
@@ -36,6 +39,8 @@
     "test:js": "node --test test/*.test.mjs",
     "test:rust": "cargo test --manifest-path crates/verifier-core/Cargo.toml",
     "check": "npm run build && npm run test:js && npm run test:rust && node scripts/verify-clean.mjs",
+    "bench": "node scripts/benchmark.mjs",
+    "bench:dry": "node scripts/benchmark.mjs terminal_bench_2.1 --mode bo3 --dry-run",
     "prepack": "npm run build"
   },
   "keywords": [
