@@ -63,32 +63,45 @@ methodology. The upstream project summarizes its key idea as follows
 > expectation over the full logprob distribution of LLM score tokens, and 3)
 > scale repeated evaluation and criteria decomposition.
 
-The following figures are **upstream-reported results**, reproduced here for
-methodology provenance and community acknowledgement. They were not produced
-by this repository:
+The comparison tables below put **Upstream** columns (quoted from the
+LLM-as-a-Verifier README) next to **Ours** columns (independent results from
+this repository). Upstream figures are reproduced for methodology provenance
+and community acknowledgement; they were not produced by this repository.
 
-| Config | Pass@1 | LLM-as-a-Verifier | Oracle |
-|---|---|---|---|
-| Best-of-3 | 79.4% | **86.5% ± 1.1%** | 92.1% |
-| Best-of-5 | 78.7% | **88.0% ± 0.6%** | 96.6% |
+### Self-Verification (Terminal-Bench 2.1)
 
-| Benchmark | Base Model | Harness | Pass@1 | LLM-as-a-Verifier | Oracle |
-|---|---|---|---|---|---|
-| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | **86.5%** | 92.1% |
-| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | **78.2%** | 84.4% |
-| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | **73.3%** | 75.0% |
+| Config | Up. Pass@1 | Ours Pass@1 | Up. LLM-as-a-Verifier | Ours LLM-as-a-Verifier | Up. Oracle | Ours Oracle |
+|---|---|---|---|---|---|---|
+| Best-of-3 | 79.4% | **79.78%** | **86.5% ± 1.1%** | **84.27%** | 92.1% | **92.13%** |
+| Best-of-5 | 78.7% | — | **88.0% ± 0.6%** | — | 96.6% | — |
 
-Source: llm-as-a-verifier `README.md`, commit
-`8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770` (2026-08-20), MIT license. Full
-tracking and quotation policy: [docs/PROVENANCE.md](./docs/PROVENANCE.md) and
-[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
+### Test-Time Scaling for Agentic Benchmarks
 
-Our own benchmark reproductions, when available, are published separately in
-`results/` with a full reproducibility card and are never mixed with the
-tables above. A full 89-task BO3 reproduction is recorded in
-[`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md),
-and the three-task smoke pilot in
-[`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md).
+| Benchmark | Base Model | Harness | Up. Pass@1 | Ours Pass@1 | Up. LLM-as-a-Verifier | Ours LLM-as-a-Verifier | Up. Oracle | Ours Oracle |
+|---|---|---|---|---|---|---|---|---|
+| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | — | **86.5%** | — | 92.1% | — |
+| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | — | **78.2%** | — | 84.4% | — |
+| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | — | **73.3%** | — | 75.0% | — |
+
+**Legend and comparability:**
+
+- **Up.** = upstream-reported, quoted from llm-as-a-verifier `README.md`,
+  commit `8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770` (2026-08-20), MIT
+  license. Tracking and quotation policy:
+  [docs/PROVENANCE.md](./docs/PROVENANCE.md) and
+  [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
+- **Ours** = independent reproduction by DSH-llm-as-a-verifier. The
+  Best-of-3 row is a full 89-task run, seed 0 only, no confidence interval:
+  [`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md).
+  The three-task smoke pilot is
+  [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md).
+- Same trajectory data, tournament size, pivots, and evaluation repeats as
+  upstream for the Best-of-3 row; the verifier prompt wording differs (this
+  repository's bundled `terminal_bench` criteria vs. the upstream criteria
+  file), so treat the columns as a reproduction comparison, not a strict
+  ablation.
+- Other rows are marked `—` because this repository has not yet reproduced
+  those benchmarks.
 
 ## Installation
 

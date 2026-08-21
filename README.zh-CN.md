@@ -52,29 +52,39 @@ T = 完成）。
 > expectation over the full logprob distribution of LLM score tokens, and 3)
 > scale repeated evaluation and criteria decomposition.
 
-以下数字为**上游报告的结果**，仅用于方法论出处与社区致敬，并非本仓库产出：
+下表将 **Upstream**（引自上游 README）与 **Ours**（本仓库独立复现）分列
+对比。上游数字仅用于方法论出处与社区致敬，并非本仓库产出。
 
-| Config | Pass@1 | LLM-as-a-Verifier | Oracle |
-|---|---|---|---|
-| Best-of-3 | 79.4% | **86.5% ± 1.1%** | 92.1% |
-| Best-of-5 | 78.7% | **88.0% ± 0.6%** | 96.6% |
+### Self-Verification（Terminal-Bench 2.1）
 
-| Benchmark | Base Model | Harness | Pass@1 | LLM-as-a-Verifier | Oracle |
-|---|---|---|---|---|---|
-| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | **86.5%** | 92.1% |
-| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | **78.2%** | 84.4% |
-| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | **73.3%** | 75.0% |
+| Config | Up. Pass@1 | Ours Pass@1 | Up. LLM-as-a-Verifier | Ours LLM-as-a-Verifier | Up. Oracle | Ours Oracle |
+|---|---|---|---|---|---|---|
+| Best-of-3 | 79.4% | **79.78%** | **86.5% ± 1.1%** | **84.27%** | 92.1% | **92.13%** |
+| Best-of-5 | 78.7% | — | **88.0% ± 0.6%** | — | 96.6% | — |
 
-来源：llm-as-a-verifier `README.md`，commit
-`8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770`（2026-08-20），MIT 许可。完整引用
-跟踪与引用政策见 [docs/PROVENANCE.md](./docs/PROVENANCE.md) 与
-[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+### Test-Time Scaling for Agentic Benchmarks
 
-本仓库自己的复现结果将单独发布在 `results/`，并附带完整复现卡片，绝不与
-上表混用。目前已完成 89 任务 BO3 完整复现，见
-[`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md)；
-三任务冒烟 pilot 见
-[`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md)。
+| Benchmark | Base Model | Harness | Up. Pass@1 | Ours Pass@1 | Up. LLM-as-a-Verifier | Ours LLM-as-a-Verifier | Up. Oracle | Ours Oracle |
+|---|---|---|---|---|---|---|---|---|
+| Terminal-Bench V2 | GPT-5.5 (Best-of-5) | Capy | 83.1% | — | **86.5%** | — | 92.1% | — |
+| SWE-Bench Verified | Opus 4.5 / Opus 4.6 / Gemini 3 Flash (Best-of-3) | mini-swe-agent | 76.1% | — | **78.2%** | — | 84.4% | — |
+| MedAgentBench | Claude Opus 4.8 (Best-of-5) | AgentBench | 70.2% | — | **73.3%** | — | 75.0% | — |
+
+**图例与可比性：**
+
+- **Up.** = 上游报告，引自 llm-as-a-verifier `README.md`，commit
+  `8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770`（2026-08-20），MIT 许可。引用
+  跟踪与引用政策见 [docs/PROVENANCE.md](./docs/PROVENANCE.md) 与
+  [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+- **Ours** = DSH-llm-as-a-verifier 独立复现。Best-of-3 行为 89 任务完整运行，
+  仅 seed 0、无置信区间：
+  [`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md)。
+  三任务冒烟 pilot 见
+  [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md)。
+- Best-of-3 行与上游使用相同轨迹数据、相同候选数与枢轴/重复评估设置；但
+  验证提示词措辞不同（本仓库内置 `terminal_bench` criteria vs. 上游
+  criteria 文件），因此应视为“复现对比”，而非严格消融实验。
+- 其余行为 `—`：本仓库尚未复现这些 benchmark。
 
 ## 安装
 

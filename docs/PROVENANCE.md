@@ -61,7 +61,7 @@ quotes above:
 
 ## 5. Rules for future benchmark content
 
-- Upstream numbers and our numbers live in separate tables.
+- Upstream numbers and our numbers live in separate tables or in explicitly labeled `Up.` / `Ours` columns, never as an unlabeled mix.
 - Every reproduction table must carry its own reproducibility card:
   data source and checksum/commit, runner version, verifier model and backend,
   criteria file, pivots, evaluations, seeds, concurrency, date, token usage,

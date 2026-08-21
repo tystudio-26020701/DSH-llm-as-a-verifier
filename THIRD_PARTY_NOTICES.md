@@ -8,7 +8,7 @@ under the upstream MIT license.
 ## Quoted third-party material
 
 - Source: <https://github.com/llm-as-a-verifier/llm-as-a-verifier>
-- Files quoted: `README.md` ("About" sentence and two benchmark tables)
+- Files quoted: `README.md` (the "About" sentence and the upstream `Up.` columns of the two benchmark comparison tables)
 - Source snapshot: commit
   `8db8a114355a9d7fdf9a8d1d5c87f6aeebd18770` (2026-08-20)
 - Quotation locations in this repository: `README.md`, section
