@@ -117,7 +117,7 @@ Restart DeepSeek Harness, open a **new blank session**, and select
 session is still blank; an active session with history keeps the preset it
 started with. The preset ships a lean working catalog (persistent bash,
 str_replace_editor, read/write/edit, glob/grep, background jobs) plus the
-five verifier tools.
+eight verifier tools (and the opt-in `verify-gate` row).
 
 ### 3. Verify the installation
 
@@ -233,8 +233,9 @@ reads the renormalized A–T distribution directly.
 
 ```text
 src/                        TypeScript sources
-  lib/                      backend, cache, criteria, benchmark, verifier
+  lib/                      backend, cache, criteria, benchmark, tracker, gate
   plugins/verifier-tools.ts the Cordis plugin (tools + session recorder)
+  plugins/verify-gate.ts    optional final-answer auto-verification gate
 crates/verifier-core/       Rust core (no_std wasm32 + native tests)
 preset/llm-as-a-verifier/   installable preset (bundles + criteria + wasm)
 scripts/                    Node-only build, benchmark, and hygiene scripts

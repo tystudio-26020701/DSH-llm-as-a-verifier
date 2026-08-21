@@ -47,7 +47,19 @@ Any future update to the quotes must update this snapshot record and
 The quotes are marked as upstream-reported results and are never presented as
 results produced by this repository.
 
-## 4. Rules for future benchmark content
+## 4. Recorded reproductions
+
+Results produced by this repository are kept separate from the upstream
+quotes above:
+
+- Full Terminal-Bench 2.1 BO3 reproduction (89 tasks, seed 0):
+  [`results/terminal_bench_2.1-bo3.md`](../results/terminal_bench_2.1-bo3.md)
+  and matching JSON.
+- Three-task BO3 smoke pilot:
+  [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](../results/terminal_bench_2.1-bo3-pilot-3tasks.md)
+  and matching JSON.
+
+## 5. Rules for future benchmark content
 
 - Upstream numbers and our numbers live in separate tables.
 - Every reproduction table must carry its own reproducibility card:
@@ -59,7 +71,7 @@ results produced by this repository.
   committed.
 - We do not claim SOTA or imply endorsement by the upstream team.
 
-## 5. Non-endorsement statement
+## 6. Non-endorsement statement
 
 This project is not affiliated with, endorsed by, or certified by the
 LLM-as-a-Verifier team. "LLM-as-a-Verifier" is used to credit the methodology;

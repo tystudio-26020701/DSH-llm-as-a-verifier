@@ -102,7 +102,7 @@ cp -R preset/llm-as-a-verifier "$dsh_home/.agent-presets/llm-as-a-verifier"
 **LLM-as-a-Verifier**。DeepSeek Harness 只会在会话仍为空白时应用预设切换；
 已有历史记录的会话会继续使用其创建时的预设。该预设自带精简工作目录
 （持久化 bash、str_replace_editor、read/write/edit、glob/grep、后台任务）
-和五个验证工具。
+和八个验证工具（另有可选的 `verify-gate` 行）。
 
 ### 3. 验证安装
 
@@ -208,8 +208,9 @@ export VERIFIER_MODEL="your-served-model"
 
 ```text
 src/                        TypeScript 源码
-  lib/                      后端、缓存、criteria、benchmark、验证编排
+  lib/                      后端、缓存、criteria、benchmark、tracker、gate
   plugins/verifier-tools.ts Cordis 插件（工具 + 会话记录器）
+  plugins/verify-gate.ts    可选的最终答复自动验证门
 crates/verifier-core/       Rust 核心（no_std wasm32 + 原生测试）
 preset/llm-as-a-verifier/   可安装预设（bundle + criteria + wasm）
 scripts/                    纯 Node 构建、benchmark 与卫生检查脚本
