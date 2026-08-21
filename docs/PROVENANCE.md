@@ -41,8 +41,8 @@ Any future update to the quotes must update this snapshot record and
 | Quoted material | Used in |
 |---|---|
 | One-sentence summary of the three key ideas (`README.md`, section "About") | `README.md`, section "Methodology & evidence" |
-| Self-Verification (Terminal-Bench 2.1) table | `README.md`, section "Methodology & evidence" |
-| Test-Time Scaling table | `README.md`, section "Methodology & evidence" |
+| Upstream columns of the Self-Verification (Terminal-Bench 2.1) table | `README.md`, section "Methodology & evidence" |
+| Upstream columns of the Test-Time Scaling table | `README.md`, section "Methodology & evidence" |
 
 The quotes are marked as upstream-reported results and are never presented as
 results produced by this repository.

@@ -123,7 +123,9 @@ results/cache-<benchmark>-<mode>.json   # reusable score cache
 ## 6. Reporting policy
 
 - Upstream-reported numbers stay in the README "Methodology & evidence"
-  section and are never mixed with our results.
+  section's labeled `Up.` columns; our results stay in labeled `Ours`
+  columns or in `results/` tables. The two are never presented as one
+  unlabeled dataset.
 - Commit only runner scripts and result summaries. Trajectory data stays
   untracked.
 - Report mean and, when multiple seeds are run, standard deviation. Label

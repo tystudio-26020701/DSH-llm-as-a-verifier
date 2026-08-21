@@ -22,9 +22,9 @@ of the fine-grained reward idea, the pivot tournament, the self-verification
 study, and the public trajectory data. Their work made this harness-native
 implementation possible.
 
-**Quoted material.** A short methodology quote and two upstream-reported
-benchmark tables from the LLM-as-a-Verifier README are reproduced in this
-repository for provenance. They remain under the upstream MIT license; see
+**Quoted material.** A short methodology quote and the upstream columns of
+two benchmark comparison tables from the LLM-as-a-Verifier README are
+reproduced in this repository for provenance. They remain under the upstream MIT license; see
 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) and
 [docs/PROVENANCE.md](./docs/PROVENANCE.md). Quoting their results is not an
 endorsement by them, and we do not present their numbers as ours.

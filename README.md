@@ -95,10 +95,10 @@ and community acknowledgement; they were not produced by this repository.
   [`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md).
   The three-task smoke pilot is
   [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md).
-- Same trajectory data, tournament size, pivots, and evaluation repeats as
-  upstream for the Best-of-3 row; the verifier prompt wording differs (this
-  repository's bundled `terminal_bench` criteria vs. the upstream criteria
-  file), so treat the columns as a reproduction comparison, not a strict
+- The Best-of-3 run uses the same trajectory files and tournament settings
+  as upstream (3 candidates, 1 pivot, 2 evaluation repeats, seed 0). This
+  repository renders trajectories and writes criteria prompts independently,
+  so treat the columns as a reproduction comparison, not a byte-identical
   ablation.
 - Other rows are marked `—` because this repository has not yet reproduced
   those benchmarks.

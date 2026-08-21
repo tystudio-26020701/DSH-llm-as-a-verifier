@@ -30,8 +30,8 @@ Each result JSON contains:
 
 ## Policy
 
-- Upstream-reported numbers stay in the main README and are never mixed with
-  the tables here.
+- Upstream-reported numbers stay in the main README's labeled `Up.`
+  columns; the tables in this folder contain only this repository's results.
 - A pilot result must be named `pilot-<n>tasks` and is not a full
   reproduction.
 - Every full reproduction is accompanied by the reproducibility details in

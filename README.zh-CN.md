@@ -81,9 +81,9 @@ T = 完成）。
   [`results/terminal_bench_2.1-bo3.md`](./results/terminal_bench_2.1-bo3.md)。
   三任务冒烟 pilot 见
   [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](./results/terminal_bench_2.1-bo3-pilot-3tasks.md)。
-- Best-of-3 行与上游使用相同轨迹数据、相同候选数与枢轴/重复评估设置；但
-  验证提示词措辞不同（本仓库内置 `terminal_bench` criteria vs. 上游
-  criteria 文件），因此应视为“复现对比”，而非严格消融实验。
+- Best-of-3 行与上游使用相同轨迹文件与锦标赛设置（3 候选、1 枢轴、
+  2 次重复评估、seed 0）。本仓库独立渲染轨迹并自行撰写 criteria 提示词，
+  因此应视为“复现对比”，而非逐字一致的消融实验。
 - 其余行为 `—`：本仓库尚未复现这些 benchmark。
 
 ## 安装
