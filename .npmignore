@@ -1,0 +1,27 @@
+# Rust build artifacts — never publish (they inflate the tarball to 27+ MB)
+crates/verifier-core/target/
+
+# Local builds of the JS library
+dist/
+
+# The optional guarded preset is a separate, not-yet-finalized preset. The
+# published package ships the base `llm-as-a-verifier` preset only; install the
+# guard preset from its own release.
+preset/llm-as-a-verifier-guard/
+
+# Local research material, memory, and runtime diagnostics — never published
+references/
+AGENTS.md
+AGENTS.local.md
+LOCAL-*.md
+LOCAL-NOTES.md
+notes/
+.dsh-guard/
+.env
+.env.*
+!.env.example
+.node_modules/
+/coverage/
+*.tsbuildinfo
+/.cargo-home/
+/.wasm-sysroot/
