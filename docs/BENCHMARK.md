@@ -131,14 +131,27 @@ results/cache-<benchmark>-<mode>.json   # reusable score cache
 - If a number differs from upstream, publish it anyway with the full config;
   a clean negative result is useful.
 
-## Current pilot result
+## Recorded results
 
-First uncached pilot, `2026-08-20`, three tasks, seed 0:
+Full BO3 reproduction, `2026-08-21`, 89 tasks, seed 0:
+
+| Tasks | Pass@1 | Verifier | Oracle | Calls | Input tokens | Cached input | Output tokens |
+|---|---|---|---|---|---|---|---|
+| 89 | 79.78% | 84.27% | 92.13% | 1,217 | 97,785,688 | 71,659,520 | 5,834,454 |
+
+Result files:
+[`results/terminal_bench_2.1-bo3.md`](../results/terminal_bench_2.1-bo3.md)
+and the matching JSON. This is an independent reproduction with
+DSH-llm-as-a-verifier; upstream numbers stay in the README provenance
+section. Only one seed has been run so far — run more seeds before quoting a
+confidence interval.
+
+Three-task smoke pilot, `2026-08-20`, seed 0:
 
 | Tasks | Pass@1 | Verifier | Oracle | Calls | Input tokens | Output tokens |
 |---|---|---|---|---|---|---|
 | 3 | 100.00% | 100.00% | 100.00% | 72 | 4,118,922 | 376,814 |
 
-Result files:
+Pilot files:
 [`results/terminal_bench_2.1-bo3-pilot-3tasks.md`](../results/terminal_bench_2.1-bo3-pilot-3tasks.md)
-and the matching JSON. This is a smoke pilot, **not** a full reproduction.
+and the matching JSON.

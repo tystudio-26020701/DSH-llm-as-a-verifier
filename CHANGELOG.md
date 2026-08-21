@@ -22,3 +22,5 @@
 - Add provenance and third-party notice documents.
 - Add TypeScript Terminal-Bench benchmark runner and pilot result docs.
 - Parallelize the verifier warm-up wave.
+- Record full 89-task Terminal-Bench 2.1 BO3 reproduction (Pass@1 79.78%,
+  verifier 84.27%, oracle 92.13%, seed 0).

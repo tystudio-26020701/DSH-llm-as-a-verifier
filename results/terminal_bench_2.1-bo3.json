@@ -1,0 +1,2884 @@
+{
+  "createdAt": "2026-08-21T02:19:09.803Z",
+  "agentDir": "/run/media/lcz/b9694bf8-68f6-456d-bb43-03f8d2d9eec2/Creation/llm-as-a-verifier-Plugin/references/llm-as-a-verifier/data/terminal_bench_2.1_trajs/mini-swe-agent_deepseek-v4-flash",
+  "preset": {
+    "name": "bo3",
+    "trials": 3,
+    "pivots": 1,
+    "evaluations": 2
+  },
+  "seed": 0,
+  "summary": {
+    "preset": {
+      "name": "bo3",
+      "trials": 3,
+      "pivots": 1,
+      "evaluations": 2
+    },
+    "tasks": 89,
+    "passAt1": 0.797752808988764,
+    "verifierAccuracy": 0.8426966292134831,
+    "oracleRate": 0.9213483146067416,
+    "verifierUplift": 0.0449438202247191,
+    "oracleGap": 0.07865168539325851,
+    "nComparisons": 445,
+    "verifierCalls": 1217,
+    "usage": {
+      "calls": 1217,
+      "inputTokens": 97785688,
+      "cachedInputTokens": 71659520,
+      "outputTokens": 5834454,
+      "reasoningTokens": 5678396
+    }
+  },
+  "tasks": [
+    {
+      "taskName": "adaptive-rejection-sampler",
+      "trials": [
+        {
+          "trialName": "adaptive-rejection-sampler__C33bGjN",
+          "reward": 1
+        },
+        {
+          "trialName": "adaptive-rejection-sampler__Gjk9d2M",
+          "reward": 1
+        },
+        {
+          "trialName": "adaptive-rejection-sampler__gKdYsGj",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49778171841470353,
+        0.4875990734358169,
+        0.5109644061121097
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "bn-fit-modify",
+      "trials": [
+        {
+          "trialName": "bn-fit-modify__4ysPANc",
+          "reward": 1
+        },
+        {
+          "trialName": "bn-fit-modify__DaS54Na",
+          "reward": 1
+        },
+        {
+          "trialName": "bn-fit-modify__Hropd9d",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.501089262465241,
+        0.5007309373069645,
+        0.49781671273938083
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "break-filter-js-from-html",
+      "trials": [
+        {
+          "trialName": "break-filter-js-from-html__AoXCkrq",
+          "reward": 1
+        },
+        {
+          "trialName": "break-filter-js-from-html__GtbRM8Q",
+          "reward": 1
+        },
+        {
+          "trialName": "break-filter-js-from-html__T7nhe7p",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5093153131127612,
+        0.483193927172536,
+        0.5043856553437823
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "build-cython-ext",
+      "trials": [
+        {
+          "trialName": "build-cython-ext__a38FzAJ",
+          "reward": 1
+        },
+        {
+          "trialName": "build-cython-ext__jfrzT9Y",
+          "reward": 1
+        },
+        {
+          "trialName": "build-cython-ext__kpwnxxt",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4905353172662233,
+        0.48974053706723675,
+        0.514793109249905
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "build-pmars",
+      "trials": [
+        {
+          "trialName": "build-pmars__7ycuUB5",
+          "reward": 1
+        },
+        {
+          "trialName": "build-pmars__DfLSWgs",
+          "reward": 1
+        },
+        {
+          "trialName": "build-pmars__NE9GR3g",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999987935306525,
+        0.5000007836867351,
+        0.5000001615537008
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "build-pov-ray",
+      "trials": [
+        {
+          "trialName": "build-pov-ray__45xQsfG",
+          "reward": 1
+        },
+        {
+          "trialName": "build-pov-ray__KZivPmj",
+          "reward": 1
+        },
+        {
+          "trialName": "build-pov-ray__WcDvR3M",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.508771796417399,
+        0.49124610478142755,
+        0.4970581666620406
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "caffe-cifar-10",
+      "trials": [
+        {
+          "trialName": "caffe-cifar-10__8TgQJbA",
+          "reward": 1
+        },
+        {
+          "trialName": "caffe-cifar-10__Bu4GTnm",
+          "reward": 1
+        },
+        {
+          "trialName": "caffe-cifar-10__QAq3aNS",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5007302699701592,
+        0.5010964197849876,
+        0.49780783698319064
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "cancel-async-tasks",
+      "trials": [
+        {
+          "trialName": "cancel-async-tasks__C7uk5jh",
+          "reward": 1
+        },
+        {
+          "trialName": "cancel-async-tasks__V6ByCfr",
+          "reward": 1
+        },
+        {
+          "trialName": "cancel-async-tasks__mQhVZsi",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4614929751261858,
+        0.5343608922720838,
+        0.4926925018443689
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "chess-best-move",
+      "trials": [
+        {
+          "trialName": "chess-best-move__Da8xED4",
+          "reward": 0
+        },
+        {
+          "trialName": "chess-best-move__JNyZ9qE",
+          "reward": 0
+        },
+        {
+          "trialName": "chess-best-move__PGZBnxA",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.6497608043726362,
+        0.3747994981707574,
+        0.42551942933239434
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "circuit-fibsqrt",
+      "trials": [
+        {
+          "trialName": "circuit-fibsqrt__KDZJDUP",
+          "reward": 1
+        },
+        {
+          "trialName": "circuit-fibsqrt__XT85UGi",
+          "reward": 1
+        },
+        {
+          "trialName": "circuit-fibsqrt__bikZzTZ",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999981582465418,
+        0.49999937670356576,
+        0.5000018487874193
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "cobol-modernization",
+      "trials": [
+        {
+          "trialName": "cobol-modernization__9k8B8q9",
+          "reward": 1
+        },
+        {
+          "trialName": "cobol-modernization__BzVanFb",
+          "reward": 1
+        },
+        {
+          "trialName": "cobol-modernization__Hmp7mAW",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.48245341701972616,
+        0.5164430975487504,
+        0.49562245291527335
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "code-from-image",
+      "trials": [
+        {
+          "trialName": "code-from-image__RYaJiCo",
+          "reward": 1
+        },
+        {
+          "trialName": "code-from-image__SHcuTa8",
+          "reward": 1
+        },
+        {
+          "trialName": "code-from-image__f9JmoNb",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49999470273873947,
+        0.5000036593685397,
+        0.5000004181032076
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "compile-compcert",
+      "trials": [
+        {
+          "trialName": "compile-compcert__JD2yMFD",
+          "reward": 1
+        },
+        {
+          "trialName": "compile-compcert__VApfzmM",
+          "reward": 1
+        },
+        {
+          "trialName": "compile-compcert__b8qdUbb",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4737209486838391,
+        0.4890020969282725,
+        0.5279577157909163
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "configure-git-webserver",
+      "trials": [
+        {
+          "trialName": "configure-git-webserver__LsiwHUA",
+          "reward": 1
+        },
+        {
+          "trialName": "configure-git-webserver__cvPSNSX",
+          "reward": 1
+        },
+        {
+          "trialName": "configure-git-webserver__fPbEVdq",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49926858614094666,
+        0.5027413776507766,
+        0.4970762436580179
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "constraints-scheduling",
+      "trials": [
+        {
+          "trialName": "constraints-scheduling__9g7nd4P",
+          "reward": 1
+        },
+        {
+          "trialName": "constraints-scheduling__BMyQDUT",
+          "reward": 1
+        },
+        {
+          "trialName": "constraints-scheduling__JS39d9H",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000004783265992,
+        0.5104083963594694,
+        0.4861216598607749
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "count-dataset-tokens",
+      "trials": [
+        {
+          "trialName": "count-dataset-tokens__ATTZdaf",
+          "reward": 1
+        },
+        {
+          "trialName": "count-dataset-tokens__ZT3xtGp",
+          "reward": 1
+        },
+        {
+          "trialName": "count-dataset-tokens__cUXqG8n",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000047165170588,
+        0.49999987396868284,
+        0.49999383734190544
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "crack-7z-hash",
+      "trials": [
+        {
+          "trialName": "crack-7z-hash__2sdHVQR",
+          "reward": 1
+        },
+        {
+          "trialName": "crack-7z-hash__8TozFmk",
+          "reward": 1
+        },
+        {
+          "trialName": "crack-7z-hash__NxzEQFk",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000052593266258,
+        0.4999982115337265,
+        0.4999947760307724
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "custom-memory-heap-crash",
+      "trials": [
+        {
+          "trialName": "custom-memory-heap-crash__3ax46fH",
+          "reward": 1
+        },
+        {
+          "trialName": "custom-memory-heap-crash__CxHe5RL",
+          "reward": 1
+        },
+        {
+          "trialName": "custom-memory-heap-crash__h5LM6mo",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49999911942393654,
+        0.5000014249714281,
+        0.4999989806141593
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "db-wal-recovery",
+      "trials": [
+        {
+          "trialName": "db-wal-recovery__FRSqXQr",
+          "reward": 0
+        },
+        {
+          "trialName": "db-wal-recovery__GnMnwMw",
+          "reward": 0
+        },
+        {
+          "trialName": "db-wal-recovery__PNzSq4M",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.4547146712316979,
+        0.5289189536138882,
+        0.5067267239497845
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "distribution-search",
+      "trials": [
+        {
+          "trialName": "distribution-search__5HtTNDF",
+          "reward": 1
+        },
+        {
+          "trialName": "distribution-search__5RQPP9i",
+          "reward": 1
+        },
+        {
+          "trialName": "distribution-search__Fj9PsX4",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000002766739693,
+        0.4999994337286981,
+        0.5000001973726763
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "dna-assembly",
+      "trials": [
+        {
+          "trialName": "dna-assembly__3NPQppm",
+          "reward": 1
+        },
+        {
+          "trialName": "dna-assembly__63qWeNW",
+          "reward": 1
+        },
+        {
+          "trialName": "dna-assembly__aR23joV",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 0,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4963455079803698,
+        0.5007306698289612,
+        0.5021928666430018
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "dna-insert",
+      "trials": [
+        {
+          "trialName": "dna-insert__RH37cAe",
+          "reward": 0
+        },
+        {
+          "trialName": "dna-insert__Uat9jx9",
+          "reward": 0
+        },
+        {
+          "trialName": "dna-insert__WFGRpyz",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.500000083432777,
+        0.49999990103243075,
+        0.5000000116510941
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "extract-elf",
+      "trials": [
+        {
+          "trialName": "extract-elf__Gd5Ypzi",
+          "reward": 0
+        },
+        {
+          "trialName": "extract-elf__coKHgmP",
+          "reward": 0
+        },
+        {
+          "trialName": "extract-elf__rM2GQXX",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.5449147053612103,
+        0.5704181312034082,
+        0.36119445303424547
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "extract-moves-from-video",
+      "trials": [
+        {
+          "trialName": "extract-moves-from-video__KFN5iFo",
+          "reward": 1
+        },
+        {
+          "trialName": "extract-moves-from-video__RECFzRK",
+          "reward": 0
+        },
+        {
+          "trialName": "extract-moves-from-video__nFHKtnx",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5867259184282444,
+        0.4418809001208291,
+        0.44248454197484494
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "feal-differential-cryptanalysis",
+      "trials": [
+        {
+          "trialName": "feal-differential-cryptanalysis__Tevabhg",
+          "reward": 1
+        },
+        {
+          "trialName": "feal-differential-cryptanalysis__dSjdtoA",
+          "reward": 1
+        },
+        {
+          "trialName": "feal-differential-cryptanalysis__gDUHDck",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49853746131375565,
+        0.5010971579565722,
+        0.4999996614108147
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "feal-linear-cryptanalysis",
+      "trials": [
+        {
+          "trialName": "feal-linear-cryptanalysis__4jhbwQg",
+          "reward": 1
+        },
+        {
+          "trialName": "feal-linear-cryptanalysis__Eq7zKD9",
+          "reward": 1
+        },
+        {
+          "trialName": "feal-linear-cryptanalysis__YkuAYGa",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999848791827366,
+        0.5000109576958932,
+        0.5000005105560724
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "filter-js-from-html",
+      "trials": [
+        {
+          "trialName": "filter-js-from-html__SZKdct3",
+          "reward": 0
+        },
+        {
+          "trialName": "filter-js-from-html__UtNZAec",
+          "reward": 0
+        },
+        {
+          "trialName": "filter-js-from-html__cGgsWnY",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.5434854581427435,
+        0.4162605827083991,
+        0.5257588064346096
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "financial-document-processor",
+      "trials": [
+        {
+          "trialName": "financial-document-processor__3cFGduS",
+          "reward": 1
+        },
+        {
+          "trialName": "financial-document-processor__4kKqt8B",
+          "reward": 1
+        },
+        {
+          "trialName": "financial-document-processor__TneaCMz",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000004435204016,
+        0.5000001296963955,
+        0.49999927894306895
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "fix-code-vulnerability",
+      "trials": [
+        {
+          "trialName": "fix-code-vulnerability__MVTnXFU",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-code-vulnerability__TBVFmjJ",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-code-vulnerability__ZRXjwGn",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4992697330134082,
+        0.5043849280973545,
+        0.49488369619011907
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "fix-git",
+      "trials": [
+        {
+          "trialName": "fix-git__KhRSpQ8",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-git__M7skAcT",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-git__WivRXju",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49707666894125896,
+        0.5000001076577361,
+        0.5021924175507537
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "fix-ocaml-gc",
+      "trials": [
+        {
+          "trialName": "fix-ocaml-gc__C82BCQ3",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-ocaml-gc__EV4bHaA",
+          "reward": 1
+        },
+        {
+          "trialName": "fix-ocaml-gc__bGyjwVs",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5010984088200399,
+        0.5000127948118273,
+        0.4985226600947863
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "gcode-to-text",
+      "trials": [
+        {
+          "trialName": "gcode-to-text__ELuvDeE",
+          "reward": 1
+        },
+        {
+          "trialName": "gcode-to-text__HFh2qJM",
+          "reward": 0
+        },
+        {
+          "trialName": "gcode-to-text__VnZss9j",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.7009715500292437,
+        0.36644659125664547,
+        0.36559134203769633
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "git-leak-recovery",
+      "trials": [
+        {
+          "trialName": "git-leak-recovery__BSuipAV",
+          "reward": 1
+        },
+        {
+          "trialName": "git-leak-recovery__HihVGZ5",
+          "reward": 1
+        },
+        {
+          "trialName": "git-leak-recovery__SVEfEGe",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5591066243816711,
+        0.5094950607078873,
+        0.41169610678321805
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "git-multibranch",
+      "trials": [
+        {
+          "trialName": "git-multibranch__7Rf528T",
+          "reward": 1
+        },
+        {
+          "trialName": "git-multibranch__ShjQ6Bd",
+          "reward": 1
+        },
+        {
+          "trialName": "git-multibranch__Sn5eWcT",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4992737464329628,
+        0.5005483488718339,
+        0.49999512173792543
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "gpt2-codegolf",
+      "trials": [
+        {
+          "trialName": "gpt2-codegolf__DqfUKPx",
+          "reward": 0
+        },
+        {
+          "trialName": "gpt2-codegolf__STkzk55",
+          "reward": 1
+        },
+        {
+          "trialName": "gpt2-codegolf__XSiRkcW",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.3830343101713895,
+        0.7040194129162373,
+        0.34493980594029416
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "headless-terminal",
+      "trials": [
+        {
+          "trialName": "headless-terminal__2FWre4v",
+          "reward": 1
+        },
+        {
+          "trialName": "headless-terminal__aABb4fh",
+          "reward": 1
+        },
+        {
+          "trialName": "headless-terminal__eS8CeSc",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4985383444001387,
+        0.499999215115497,
+        0.5010968303632732
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "hf-model-inference",
+      "trials": [
+        {
+          "trialName": "hf-model-inference__2nYCcJX",
+          "reward": 1
+        },
+        {
+          "trialName": "hf-model-inference__bA6sv45",
+          "reward": 1
+        },
+        {
+          "trialName": "hf-model-inference__cdtDUcr",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000001567613404,
+        0.5000048518365267,
+        0.49999624355159966
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "install-windows-3.11",
+      "trials": [
+        {
+          "trialName": "install-windows-3.11__2tVnmb3",
+          "reward": 0
+        },
+        {
+          "trialName": "install-windows-3.11__Raj5NEc",
+          "reward": 1
+        },
+        {
+          "trialName": "install-windows-3.11__X4e2Vkv",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.491249567748456,
+        0.4992675427353857,
+        0.5071121671371188
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "kv-store-grpc",
+      "trials": [
+        {
+          "trialName": "kv-store-grpc__5ABR7pN",
+          "reward": 0
+        },
+        {
+          "trialName": "kv-store-grpc__C2X7s7b",
+          "reward": 1
+        },
+        {
+          "trialName": "kv-store-grpc__Dv5j9YA",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.44560977954907827,
+        0.5021922192898757,
+        0.5391485008707846
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "large-scale-text-editing",
+      "trials": [
+        {
+          "trialName": "large-scale-text-editing__AxJRDSm",
+          "reward": 1
+        },
+        {
+          "trialName": "large-scale-text-editing__KgAsrKp",
+          "reward": 1
+        },
+        {
+          "trialName": "large-scale-text-editing__LbwfoSi",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5278427573667372,
+        0.5138248441709284,
+        0.4490514793400886
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "largest-eigenval",
+      "trials": [
+        {
+          "trialName": "largest-eigenval__6C92R9c",
+          "reward": 1
+        },
+        {
+          "trialName": "largest-eigenval__KW5P8M6",
+          "reward": 1
+        },
+        {
+          "trialName": "largest-eigenval__LfhNMRV",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.666799644363175,
+        0.355904969941464,
+        0.4216955042409696
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "llm-inference-batching-scheduler",
+      "trials": [
+        {
+          "trialName": "llm-inference-batching-scheduler__4L2BgaV",
+          "reward": 1
+        },
+        {
+          "trialName": "llm-inference-batching-scheduler__6RroGuT",
+          "reward": 1
+        },
+        {
+          "trialName": "llm-inference-batching-scheduler__JpqDtQU",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49707677589877886,
+        0.49999975036262895,
+        0.5021926053039442
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "log-summary-date-ranges",
+      "trials": [
+        {
+          "trialName": "log-summary-date-ranges__Ek6R7Nz",
+          "reward": 1
+        },
+        {
+          "trialName": "log-summary-date-ranges__XrPQP7h",
+          "reward": 1
+        },
+        {
+          "trialName": "log-summary-date-ranges__cRXTMDo",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999993288813515,
+        0.4970764926560845,
+        0.502193133846923
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "mailman",
+      "trials": [
+        {
+          "trialName": "mailman__CqNfAYz",
+          "reward": 0
+        },
+        {
+          "trialName": "mailman__JYVEtRi",
+          "reward": 0
+        },
+        {
+          "trialName": "mailman__NkJoXnL",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.46134855630081356,
+        0.45504590649169163,
+        0.562704152905621
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "make-doom-for-mips",
+      "trials": [
+        {
+          "trialName": "make-doom-for-mips__EqVEScu",
+          "reward": 0
+        },
+        {
+          "trialName": "make-doom-for-mips__fX3bxYG",
+          "reward": 0
+        },
+        {
+          "trialName": "make-doom-for-mips__njNcHGZ",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.7031764245492523,
+        0.36682794413207037,
+        0.3622701564689265
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "make-mips-interpreter",
+      "trials": [
+        {
+          "trialName": "make-mips-interpreter__5uJwGcq",
+          "reward": 1
+        },
+        {
+          "trialName": "make-mips-interpreter__CiZN9hK",
+          "reward": 1
+        },
+        {
+          "trialName": "make-mips-interpreter__SvMAfzg",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4723092449313622,
+        0.520721824879841,
+        0.5000616552288498
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "mcmc-sampling-stan",
+      "trials": [
+        {
+          "trialName": "mcmc-sampling-stan__4JRJRmi",
+          "reward": 1
+        },
+        {
+          "trialName": "mcmc-sampling-stan__Dwi3peb",
+          "reward": 1
+        },
+        {
+          "trialName": "mcmc-sampling-stan__HhcvjM8",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000020765341411,
+        0.49999867586531804,
+        0.4999985554224938
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "merge-diff-arc-agi-task",
+      "trials": [
+        {
+          "trialName": "merge-diff-arc-agi-task__5Yk2WfS",
+          "reward": 1
+        },
+        {
+          "trialName": "merge-diff-arc-agi-task__Ga3s6zL",
+          "reward": 0
+        },
+        {
+          "trialName": "merge-diff-arc-agi-task__djqxa8x",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999994443006606,
+        0.5000026720597066,
+        0.4999969929530638
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "model-extraction-relu-logits",
+      "trials": [
+        {
+          "trialName": "model-extraction-relu-logits__T78uX7y",
+          "reward": 1
+        },
+        {
+          "trialName": "model-extraction-relu-logits__Uq8R2WG",
+          "reward": 0
+        },
+        {
+          "trialName": "model-extraction-relu-logits__ddzZTsF",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.6051148497229146,
+        0.5502843754204604,
+        0.3095624916156534
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "modernize-scientific-stack",
+      "trials": [
+        {
+          "trialName": "modernize-scientific-stack__9vP9Jv5",
+          "reward": 1
+        },
+        {
+          "trialName": "modernize-scientific-stack__SfLx3G8",
+          "reward": 1
+        },
+        {
+          "trialName": "modernize-scientific-stack__XayydpK",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.499999372947948,
+        0.4999984241853546,
+        0.500001652150023
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "mteb-leaderboard",
+      "trials": [
+        {
+          "trialName": "mteb-leaderboard__D8kmscc",
+          "reward": 1
+        },
+        {
+          "trialName": "mteb-leaderboard__Grq26PR",
+          "reward": 0
+        },
+        {
+          "trialName": "mteb-leaderboard__PHxsmUk",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.6063292294347746,
+        0.3109823320330837,
+        0.5472453620538834
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "mteb-retrieve",
+      "trials": [
+        {
+          "trialName": "mteb-retrieve__DRwKhmd",
+          "reward": 1
+        },
+        {
+          "trialName": "mteb-retrieve__XnFgmLH",
+          "reward": 0
+        },
+        {
+          "trialName": "mteb-retrieve__dgBWytF",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5268102080382434,
+        0.3843606248713251,
+        0.5666218753178236
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "multi-source-data-merger",
+      "trials": [
+        {
+          "trialName": "multi-source-data-merger__GXXJcxe",
+          "reward": 1
+        },
+        {
+          "trialName": "multi-source-data-merger__KWgfSVC",
+          "reward": 1
+        },
+        {
+          "trialName": "multi-source-data-merger__WA7m46m",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999994655308982,
+        0.5000005903048553,
+        0.49999974739596126
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "nginx-request-logging",
+      "trials": [
+        {
+          "trialName": "nginx-request-logging__C8hrGGJ",
+          "reward": 1
+        },
+        {
+          "trialName": "nginx-request-logging__K7gwC7N",
+          "reward": 1
+        },
+        {
+          "trialName": "nginx-request-logging__Y55B6Tz",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999993142133259,
+        0.49999534404299567,
+        0.5000040063077589
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "openssl-selfsigned-cert",
+      "trials": [
+        {
+          "trialName": "openssl-selfsigned-cert__TbGxkTc",
+          "reward": 1
+        },
+        {
+          "trialName": "openssl-selfsigned-cert__epyDVF9",
+          "reward": 1
+        },
+        {
+          "trialName": "openssl-selfsigned-cert__et8A6Tn",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5000000540720615,
+        0.49999954558554416,
+        0.5000003002567956
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "overfull-hbox",
+      "trials": [
+        {
+          "trialName": "overfull-hbox__b4skwAP",
+          "reward": 1
+        },
+        {
+          "trialName": "overfull-hbox__enQTFzJ",
+          "reward": 1
+        },
+        {
+          "trialName": "overfull-hbox__qAvyCwd",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5007302208029719,
+        0.49853810015290456,
+        0.5005487592830926
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "password-recovery",
+      "trials": [
+        {
+          "trialName": "password-recovery__CfQ8UpP",
+          "reward": 1
+        },
+        {
+          "trialName": "password-recovery__MfuxSmw",
+          "reward": 1
+        },
+        {
+          "trialName": "password-recovery__PiYyW6S",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5938769476002301,
+        0.5594862587549131,
+        0.3153444777781132
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "path-tracing",
+      "trials": [
+        {
+          "trialName": "path-tracing__DVQxRR6",
+          "reward": 0
+        },
+        {
+          "trialName": "path-tracing__FUAQ7L6",
+          "reward": 1
+        },
+        {
+          "trialName": "path-tracing__PkPdSja",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.3544782758255107,
+        0.721408866698766,
+        0.350309901909468
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "path-tracing-reverse",
+      "trials": [
+        {
+          "trialName": "path-tracing-reverse__8gGFsCG",
+          "reward": 1
+        },
+        {
+          "trialName": "path-tracing-reverse__N3ABUSp",
+          "reward": 1
+        },
+        {
+          "trialName": "path-tracing-reverse__d4whjJA",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.6072268002626828,
+        0.5687984510716345,
+        0.28823248191145506
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "polyglot-c-py",
+      "trials": [
+        {
+          "trialName": "polyglot-c-py__DHF8Xfr",
+          "reward": 1
+        },
+        {
+          "trialName": "polyglot-c-py__XbDyLUD",
+          "reward": 1
+        },
+        {
+          "trialName": "polyglot-c-py__fuYprpj",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.50164751562755,
+        0.500730114749065,
+        0.49707319774753506
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "polyglot-rust-c",
+      "trials": [
+        {
+          "trialName": "polyglot-rust-c__4WDJSdj",
+          "reward": 1
+        },
+        {
+          "trialName": "polyglot-rust-c__4s9oMER",
+          "reward": 1
+        },
+        {
+          "trialName": "polyglot-rust-c__9zX5ahh",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5036546505574323,
+        0.5087838753495233,
+        0.48463351564320334
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "portfolio-optimization",
+      "trials": [
+        {
+          "trialName": "portfolio-optimization__AqMGbPS",
+          "reward": 1
+        },
+        {
+          "trialName": "portfolio-optimization__GiosdMF",
+          "reward": 1
+        },
+        {
+          "trialName": "portfolio-optimization__TykmpSV",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4963425776983428,
+        0.5043877946094891,
+        0.4978070294890052
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "protein-assembly",
+      "trials": [
+        {
+          "trialName": "protein-assembly__CAKzLYw",
+          "reward": 0
+        },
+        {
+          "trialName": "protein-assembly__Davfnoj",
+          "reward": 0
+        },
+        {
+          "trialName": "protein-assembly__PBUBXK3",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.4912341916777403,
+        0.40053276035542157,
+        0.5811747859751286
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "prove-plus-comm",
+      "trials": [
+        {
+          "trialName": "prove-plus-comm__4B5XhJf",
+          "reward": 1
+        },
+        {
+          "trialName": "prove-plus-comm__6cXFgZx",
+          "reward": 1
+        },
+        {
+          "trialName": "prove-plus-comm__c7gcknb",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49999943716136297,
+        0.5000015631493456,
+        0.4999984786395095
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "pypi-server",
+      "trials": [
+        {
+          "trialName": "pypi-server__Eio4fwn",
+          "reward": 1
+        },
+        {
+          "trialName": "pypi-server__KEvMA5C",
+          "reward": 1
+        },
+        {
+          "trialName": "pypi-server__aWErW6D",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999988608508365,
+        0.500726649669749,
+        0.4994558671095609
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "pytorch-model-cli",
+      "trials": [
+        {
+          "trialName": "pytorch-model-cli__Ehta5yF",
+          "reward": 0
+        },
+        {
+          "trialName": "pytorch-model-cli__KfJXKzF",
+          "reward": 1
+        },
+        {
+          "trialName": "pytorch-model-cli__cE9greg",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.5032897438320838,
+        0.5014617756047481,
+        0.4941518992858069
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "pytorch-model-recovery",
+      "trials": [
+        {
+          "trialName": "pytorch-model-recovery__69yU4Lu",
+          "reward": 1
+        },
+        {
+          "trialName": "pytorch-model-recovery__G33cAFY",
+          "reward": 1
+        },
+        {
+          "trialName": "pytorch-model-recovery__KQERnhZ",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4926865745912286,
+        0.5000053219773624,
+        0.5054810775735566
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "qemu-alpine-ssh",
+      "trials": [
+        {
+          "trialName": "qemu-alpine-ssh__B9MbMRA",
+          "reward": 1
+        },
+        {
+          "trialName": "qemu-alpine-ssh__QonnJ8f",
+          "reward": 1
+        },
+        {
+          "trialName": "qemu-alpine-ssh__i8nTRKo",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5005609892744125,
+        0.4999930772930905,
+        0.4992589370076928
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "qemu-startup",
+      "trials": [
+        {
+          "trialName": "qemu-startup__7FvbPdY",
+          "reward": 1
+        },
+        {
+          "trialName": "qemu-startup__9LtbvuM",
+          "reward": 1
+        },
+        {
+          "trialName": "qemu-startup__cXho2ii",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5032880139465985,
+        0.5007325536938023,
+        0.49488342771073296
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "query-optimize",
+      "trials": [
+        {
+          "trialName": "query-optimize__DBR2Raq",
+          "reward": 1
+        },
+        {
+          "trialName": "query-optimize__LsQ2HiW",
+          "reward": 1
+        },
+        {
+          "trialName": "query-optimize__R9b7aCJ",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5049323261676457,
+        0.49634575582976725,
+        0.4970778092800383
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "raman-fitting",
+      "trials": [
+        {
+          "trialName": "raman-fitting__ChNyq8z",
+          "reward": 0
+        },
+        {
+          "trialName": "raman-fitting__GkHUW9P",
+          "reward": 0
+        },
+        {
+          "trialName": "raman-fitting__iLivqpU",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.39261577517727747,
+        0.5625134876441147,
+        0.5240329079639029
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "regex-chess",
+      "trials": [
+        {
+          "trialName": "regex-chess__NG2KxER",
+          "reward": 1
+        },
+        {
+          "trialName": "regex-chess__gkujePt",
+          "reward": 1
+        },
+        {
+          "trialName": "regex-chess__mkgmspC",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 0,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4546463843914302,
+        0.49771391785516994,
+        0.5357297733150499
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "regex-log",
+      "trials": [
+        {
+          "trialName": "regex-log__2fJAqSJ",
+          "reward": 1
+        },
+        {
+          "trialName": "regex-log__3XWPkHD",
+          "reward": 1
+        },
+        {
+          "trialName": "regex-log__PEuCg3U",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5115268756263345,
+        0.5087639023794602,
+        0.47586693011876036
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "reshard-c4-data",
+      "trials": [
+        {
+          "trialName": "reshard-c4-data__9Q2Fq7B",
+          "reward": 1
+        },
+        {
+          "trialName": "reshard-c4-data__bZejjRe",
+          "reward": 1
+        },
+        {
+          "trialName": "reshard-c4-data__dSAy9jD",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5038412816620945,
+        0.49853067574374815,
+        0.4963476153734591
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "rstan-to-pystan",
+      "trials": [
+        {
+          "trialName": "rstan-to-pystan__49nRTqS",
+          "reward": 1
+        },
+        {
+          "trialName": "rstan-to-pystan__Drg54Rr",
+          "reward": 1
+        },
+        {
+          "trialName": "rstan-to-pystan__JZk34mY",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5278372279826321,
+        0.4526585739539902,
+        0.5102251220691669
+      ],
+      "ranking": [
+        0,
+        2,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "sam-cell-seg",
+      "trials": [
+        {
+          "trialName": "sam-cell-seg__3Eu9Ce5",
+          "reward": 1
+        },
+        {
+          "trialName": "sam-cell-seg__CrUobhH",
+          "reward": 0
+        },
+        {
+          "trialName": "sam-cell-seg__S9PtuaX",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5014567286945074,
+        0.5384376742379876,
+        0.4472930389881758
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "sanitize-git-repo",
+      "trials": [
+        {
+          "trialName": "sanitize-git-repo__JtQJNiR",
+          "reward": 1
+        },
+        {
+          "trialName": "sanitize-git-repo__SG8huRk",
+          "reward": 1
+        },
+        {
+          "trialName": "sanitize-git-repo__i7fXYug",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5093026463170491,
+        0.4992700004020036,
+        0.4883264711752642
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "schemelike-metacircular-eval",
+      "trials": [
+        {
+          "trialName": "schemelike-metacircular-eval__B4budJw",
+          "reward": 1
+        },
+        {
+          "trialName": "schemelike-metacircular-eval__BJsZWuG",
+          "reward": 1
+        },
+        {
+          "trialName": "schemelike-metacircular-eval__TzSU6YS",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4812165883203583,
+        0.5237098807760479,
+        0.487170237311578
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "sparql-university",
+      "trials": [
+        {
+          "trialName": "sparql-university__4To27aJ",
+          "reward": 1
+        },
+        {
+          "trialName": "sparql-university__N6A3PJk",
+          "reward": 1
+        },
+        {
+          "trialName": "sparql-university__cHX3fuF",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.5014624767018055,
+        0.4948829195250884,
+        0.5027409528298296
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "sqlite-db-truncate",
+      "trials": [
+        {
+          "trialName": "sqlite-db-truncate__4PxNQGZ",
+          "reward": 1
+        },
+        {
+          "trialName": "sqlite-db-truncate__BhQofAN",
+          "reward": 1
+        },
+        {
+          "trialName": "sqlite-db-truncate__KEbMgYt",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4992695552573057,
+        0.5005484544381849,
+        0.49999917215844764
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "sqlite-with-gcov",
+      "trials": [
+        {
+          "trialName": "sqlite-with-gcov__9Hiuijg",
+          "reward": 1
+        },
+        {
+          "trialName": "sqlite-with-gcov__BcCM9RE",
+          "reward": 1
+        },
+        {
+          "trialName": "sqlite-with-gcov__XJziXuy",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49999921952692167,
+        0.5000002565493281,
+        0.5000003929428126
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "torch-pipeline-parallelism",
+      "trials": [
+        {
+          "trialName": "torch-pipeline-parallelism__ZVENp2Y",
+          "reward": 0
+        },
+        {
+          "trialName": "torch-pipeline-parallelism__cCwXjJE",
+          "reward": 0
+        },
+        {
+          "trialName": "torch-pipeline-parallelism__iJ39tue",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 0,
+      "selectedReward": 0,
+      "firstReward": 0,
+      "oracleReward": 0,
+      "scores": [
+        0.5224605675115102,
+        0.49850468348847365,
+        0.47154789316284607
+      ],
+      "ranking": [
+        0,
+        1,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "torch-tensor-parallelism",
+      "trials": [
+        {
+          "trialName": "torch-tensor-parallelism__7W7bQrL",
+          "reward": 1
+        },
+        {
+          "trialName": "torch-tensor-parallelism__G9PA5Q7",
+          "reward": 1
+        },
+        {
+          "trialName": "torch-tensor-parallelism__GAoGFma",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4993233971864206,
+        0.5048905699745045,
+        0.49415584284757336
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "train-fasttext",
+      "trials": [
+        {
+          "trialName": "train-fasttext__3CzsvA6",
+          "reward": 0
+        },
+        {
+          "trialName": "train-fasttext__S2L8R6L",
+          "reward": 1
+        },
+        {
+          "trialName": "train-fasttext__ZQb97c7",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.35988068569011583,
+        0.7130712770881664,
+        0.3560242781923289
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "tune-mjcf",
+      "trials": [
+        {
+          "trialName": "tune-mjcf__32QzT8g",
+          "reward": 1
+        },
+        {
+          "trialName": "tune-mjcf__8rYwtCc",
+          "reward": 1
+        },
+        {
+          "trialName": "tune-mjcf__BnTPMwx",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.49999986513961375,
+        0.4999998549111602,
+        0.5000003283121727
+      ],
+      "ranking": [
+        2,
+        0,
+        1
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "video-processing",
+      "trials": [
+        {
+          "trialName": "video-processing__4AUBE4N",
+          "reward": 1
+        },
+        {
+          "trialName": "video-processing__6NcryDg",
+          "reward": 0
+        },
+        {
+          "trialName": "video-processing__Jxs9yDX",
+          "reward": 0
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 0,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4867946474720881,
+        0.56901568838962,
+        0.4211844346750851
+      ],
+      "ranking": [
+        1,
+        0,
+        2
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "vulnerable-secret",
+      "trials": [
+        {
+          "trialName": "vulnerable-secret__29kmLGw",
+          "reward": 1
+        },
+        {
+          "trialName": "vulnerable-secret__PBDU7AT",
+          "reward": 1
+        },
+        {
+          "trialName": "vulnerable-secret__QbUbH9v",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 1,
+      "oracleReward": 1,
+      "scores": [
+        0.4999993299600883,
+        0.500000411816292,
+        0.5000001209515225
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "winning-avg-corewars",
+      "trials": [
+        {
+          "trialName": "winning-avg-corewars__DYCEJhX",
+          "reward": 0
+        },
+        {
+          "trialName": "winning-avg-corewars__UZjkaJS",
+          "reward": 1
+        },
+        {
+          "trialName": "winning-avg-corewars__eJX7Ca9",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 2,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.30287372342951935,
+        0.565444985088385,
+        0.5987609686115717
+      ],
+      "ranking": [
+        2,
+        1,
+        0
+      ],
+      "nComparisons": 5
+    },
+    {
+      "taskName": "write-compressor",
+      "trials": [
+        {
+          "trialName": "write-compressor__FXxu2Ef",
+          "reward": 0
+        },
+        {
+          "trialName": "write-compressor__dqV4QWQ",
+          "reward": 1
+        },
+        {
+          "trialName": "write-compressor__gypTwZc",
+          "reward": 1
+        }
+      ],
+      "selectedIndex": 1,
+      "selectedReward": 1,
+      "firstReward": 0,
+      "oracleReward": 1,
+      "scores": [
+        0.2846956222865658,
+        0.6076309575991965,
+        0.5717964342478389
+      ],
+      "ranking": [
+        1,
+        2,
+        0
+      ],
+      "nComparisons": 5
+    }
+  ]
+}
